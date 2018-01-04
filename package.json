@@ -1,0 +1,22 @@
+{
+  "name": "plandocument",
+  "version": "0.1.0",
+  "description": "A web-based planning document theme for Hugo",
+  "scripts": {
+    "build": "node ./build.js"
+  },
+  "keywords": [
+    "plan",
+    "document",
+    "hugo"
+  ],
+  "author": "Champaign County Regional Planning Commission",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "uswds": "^1.4.4"
+  },
+  "devDependencies": {
+    "fs-extra": "^5.0.0",
+    "node-sass": "^4.7.2"
+  }
+}

@@ -1,0 +1,14 @@
+baseURL: "https://example.com/"
+languageCode: "en-us"
+title: "Example Plan"
+theme: "plandocument"
+params:
+  agency:
+    name: Example Planning Commission
+    logo: img/logo.svg
+    url: https://example.com/
+    email: info@example.com
+    phone: (555) 555-5555
+    facebook: https://www.facebook.com/
+    twitter: https://twitter.com/
+    youtube: https://www.youtube.com/

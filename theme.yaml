@@ -1,0 +1,12 @@
+name: "Plan Document"
+license: "BSD-3-Clause"
+licenselink: "https://github.com/CUUATS/plandocument/blob/master/LICENSE.md"
+description: "A web-based planning document theme for Hugo"
+homepage: "https://github.com/CUUATS/plandocument"
+min_version: "0.31"
+features:
+  - "blog"
+
+author:
+  name: "Champaign County Regional Planning Commission"
+  homepage: "https://ccrpc.org/"
