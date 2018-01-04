@@ -3712,4 +3712,12 @@ input[type=search] {
 .plandoc-footer-logo img {
   height: 120px; }
 
+.usa-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -93px; }
+  .usa-header:before, .usa-header:after {
+    content: '';
+    display: table; }
+
 /*# sourceMappingURL=bundle.css.map */

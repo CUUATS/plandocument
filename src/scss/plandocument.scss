@@ -4,3 +4,14 @@
 .plandoc-footer-logo img {
   height: 120px;
 }
+
+.usa-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -93px;
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+}
