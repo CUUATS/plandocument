@@ -2,7 +2,9 @@
 
 <main id="main-content" class="usa-grid usa-section usa-content usa-layout-docs">
   <div class="usa-width-one-whole usa-layout-docs-main_content">
+    {{ if not .IsHome }}
     <h1><span class="title">{{ .Title }}</span></h1>
+    {{ end }}
     {{ .Content }}
   </div>
 </main>
