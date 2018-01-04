@@ -32,14 +32,14 @@
     		<ul class="usa-nav-primary usa-accordion">
           {{ range $index, $element := .Site.Menus.main }}
           <li>
-            {{ if .HasChildren }}
+            {{ if $element.Page.Pages }}
             <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="extended-nav-section-{{ $index }}">
               <span>{{ .Name }}</span>
             </button>
             <ul id="extended-nav-section-{{ $index }}" class="usa-nav-submenu">
-              {{ range .Children }}
+              {{ range .Page.Pages }}
               <li>
-                <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+                <a href="{{ .URL | relURL }}">{{ .Title }}</a>
               </li>
               {{ end }}
             </ul>
