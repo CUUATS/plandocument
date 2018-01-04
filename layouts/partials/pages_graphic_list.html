@@ -1,0 +1,14 @@
+{{ if .Pages }}
+<section class="usa-section usa-section-dark usa-graphic_list">
+  {{ range $index, $element := .Pages }}
+  {{ if eq (mod $index 2) 0 }}
+  {{ if gt $index 0 }}
+  </div>
+  {{ end }}
+  <div class="usa-grid usa-graphic_list-row">
+  {{ end }}
+    {{ partial "graphic_list_item.html" . }}
+  {{ end }}
+  </div>
+</section>
+{{ end }}

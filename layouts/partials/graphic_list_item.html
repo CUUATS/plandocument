@@ -1,0 +1,9 @@
+<div class="usa-width-one-half usa-media_block">
+  {{ if .Params.image }}
+  <img class="usa-media_block-img" src="{{ .Params.image }}" alt="{{ .Params.imageAlt }}">
+  {{ end }}
+  <div class="usa-media_block-body">
+      <h3><a href="{{ .URL | relURL }}">{{ .Title }}</a></h3>
+      {{ if .Summary }}<p>{{ .Summary }}</p>{{ end }}
+  </div>
+</div>

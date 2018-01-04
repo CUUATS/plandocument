@@ -6,6 +6,11 @@
     <h1><span class="title">{{ .Title }}</span></h1>
     {{ end }}
     {{ .Content }}
+    {{ if .IsHome }}
+    {{ partial "menu_graphic_list.html" . }}
+    {{ else }}
+    {{ partial "pages_graphic_list.html" . }}
+    {{ end }}
   </div>
 </main>
 
