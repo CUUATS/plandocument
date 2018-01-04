@@ -1,0 +1,26 @@
+<aside class="usa-width-one-fourth usa-layout-docs-sidenav">
+  {{ if .Page.CurrentSection.Pages }}
+  {{ $pageUID := .Page.UniqueID }}
+  <ul class="usa-sidenav-list">
+    {{ range .Page.CurrentSection.Pages }}
+    <li>
+      {{ if eq $pageUID .UniqueID }}
+      <a class="usa-current" href="{{ .URL | relURL }}">{{ .Title }}</a>
+      {{ $headers := findRE "<h2.*?>(.|\n])+?</h2>" .Content }}
+      {{ if $headers }}
+      <ul class="usa-sidenav-sub_list">
+        {{ range $headers }}
+          <li>
+            <a href="#{{ . | plainify | htmlEscape | urlize }}">{{ . | plainify | htmlEscape }}</a>
+          </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+      {{ else }}
+      <a href="{{ .URL | relURL }}">{{ .Title }}</a>
+      {{ end }}
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</aside>
