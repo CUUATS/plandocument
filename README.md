@@ -16,6 +16,26 @@ git clone https://github.com/CUUATS/plandocument.git
 Copy the [example configuration](https://github.com/CUUATS/plandocument/blob/master/example.config.yaml)
 to your Hugo site configuration, and edit the parameters as appropriate.
 
+## Development
+To customize the Plan Document theme, install its dependencies using
+[yarn](https://yarnpkg.com/en/):
+
+```
+yarn install
+```
+
+Then edit files in the `src` directory, and rebuild the static resources:
+
+```
+npm run build
+```
+
+To build for production, use the `--production` flag:
+
+```
+npm run build -- --production
+```
+
 ## License
 The Plan Document theme is available under the terms of the
 [BSD 3-clause license](https://github.com/CUUATS/plandocument/blob/master/LICENSE.md).
