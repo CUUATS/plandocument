@@ -1,4 +1,5 @@
 <aside class="usa-width-one-fourth usa-layout-docs-sidenav">
+  {{ if .Page.CurrentSection }}
   {{ if .Page.CurrentSection.Pages }}
   {{ $pageUID := .Page.UniqueID }}
   <ul class="usa-sidenav-list">
@@ -22,5 +23,6 @@
     </li>
     {{ end }}
   </ul>
+  {{ end }}
   {{ end }}
 </aside>
