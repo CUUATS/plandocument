@@ -2,19 +2,26 @@
 
 <main id="main-content">
   {{ partial "banner.html" . }}
-  <section class="usa-grid usa-section usa-content usa-layout-docs">
-    <div class="usa-width-one-whole usa-layout-docs-main_content">
+  <section class="usa-grid usa-section">
+    {{ if .Params.tagline }}
+    <div class="usa-width-one-third">
+      <h2 class="plandoc-tagline">{{ .Params.tagline | htmlEscape }}</h2>
+    </div>
+    <div class="usa-width-two-thirds">
+    {{ else }}
+    <div class="usa-width-one-whole">
+    {{ end }}
       {{ if not .IsHome }}
       <h1><span class="title">{{ .Title }}</span></h1>
       {{ end }}
       {{ .Content }}
-      {{ if .IsHome }}
-      {{ partial "menu_graphic_list.html" . }}
-      {{ else }}
-      {{ partial "pages_graphic_list.html" . }}
-      {{ end }}
     </div>
   </section>
+  {{ if .IsHome }}
+  {{ partial "menu_graphic_list.html" . }}
+  {{ else }}
+  {{ partial "pages_graphic_list.html" . }}
+  {{ end }}
 </main>
 
 {{ partial "footer.html" . }}

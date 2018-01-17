@@ -41,6 +41,13 @@ bannerAction: The button text
 bannerUrl: /path-to/button-destination
 ```
 
+### Tagline
+Taglines can be used on listing pages to add large text next to the body text.
+
+```
+tagline: A useful tagline
+```
+
 ## Development
 To customize the Plan Document theme, install its dependencies using
 [yarn](https://yarnpkg.com/en/):
