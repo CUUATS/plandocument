@@ -19,6 +19,14 @@ to your Hugo site configuration, and edit the parameters as appropriate.
 ## Usage
 The Plan Document theme includes several custom features.
 
+### Abstracts
+The auto-generated summary for a page can be overriden by adding an abstract
+to the page's front matter:
+
+```
+abstract: A summary of the page
+```
+
 ### Page Banners
 The Plan Document theme supports page banners using the [USWDS Hero
 Component](https://components.standards.usa.gov/components/detail/hero.html).
