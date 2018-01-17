@@ -16,6 +16,23 @@ git clone https://github.com/CUUATS/plandocument.git
 Copy the [example configuration](https://github.com/CUUATS/plandocument/blob/master/example.config.yaml)
 to your Hugo site configuration, and edit the parameters as appropriate.
 
+## Usage
+The Plan Document theme includes several custom features.
+
+### Page Banners
+The Plan Document theme supports page banners using the [USWDS Hero
+Component](https://components.standards.usa.gov/components/detail/hero.html).
+To add a banner, add an image to the page bundle named `banner.jpg`. The image
+should be approximately 1600x800 pixels and should be web optimized. Then add
+front matter for the text of the banner:
+
+```
+bannerHeading: The banner headline
+bannerText: The text of the banner message
+bannerAction: The button text
+bannerUrl: /path-to/button-destination
+```
+
 ## Development
 To customize the Plan Document theme, install its dependencies using
 [yarn](https://yarnpkg.com/en/):
