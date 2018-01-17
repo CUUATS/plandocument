@@ -1,0 +1,16 @@
+{{ $image := .Resources.GetByPrefix "banner" }}
+{{ if $image }}
+<section class="usa-hero" style="background-image: url('{{ $image.RelPermalink }}');">
+  <div class="usa-grid">
+    {{ if or .Params.bannerHeading .Params.bannerText }}
+    <div class="usa-hero-callout usa-section-dark">
+      <h2>{{ .Params.bannerHeading }}</h2>
+      {{ if .Params.bannerText }}<p>{{ .Params.bannerText }}</p>{{ end }}
+      {{ if and .Params.bannerAction .Params.bannerUrl }}
+      <a class="usa-button" href="{{ .Params.bannerUrl | relURL }}">{{ .Params.bannerAction }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

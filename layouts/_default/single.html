@@ -1,11 +1,14 @@
 {{ partial "header.html" . }}
 
-<main id="main-content" class="usa-grid usa-section usa-content usa-layout-docs">
-  {{ partial "section_menu.html" . }}
-  <div class="usa-width-three-fourths usa-layout-docs-main_content">
-    <h1><span class="title">{{ .Title }}</span></h1>
-    {{ .Content }}
-  </div>
+<main id="main-content">
+  {{ partial "banner.html" . }}
+  <section class="usa-grid usa-section usa-content usa-layout-docs">
+    {{ partial "section_menu.html" . }}
+    <div class="usa-width-three-fourths usa-layout-docs-main_content">
+      <h1><span class="title">{{ .Title }}</span></h1>
+      {{ .Content }}
+    </div>
+  </section>
 </main>
 
 {{ partial "footer.html" . }}

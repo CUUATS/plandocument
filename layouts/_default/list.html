@@ -1,17 +1,20 @@
 {{ partial "header.html" . }}
 
-<main id="main-content" class="usa-grid usa-section usa-content usa-layout-docs">
-  <div class="usa-width-one-whole usa-layout-docs-main_content">
-    {{ if not .IsHome }}
-    <h1><span class="title">{{ .Title }}</span></h1>
-    {{ end }}
-    {{ .Content }}
-    {{ if .IsHome }}
-    {{ partial "menu_graphic_list.html" . }}
-    {{ else }}
-    {{ partial "pages_graphic_list.html" . }}
-    {{ end }}
-  </div>
+<main id="main-content">
+  {{ partial "banner.html" . }}
+  <section class="usa-grid usa-section usa-content usa-layout-docs">
+    <div class="usa-width-one-whole usa-layout-docs-main_content">
+      {{ if not .IsHome }}
+      <h1><span class="title">{{ .Title }}</span></h1>
+      {{ end }}
+      {{ .Content }}
+      {{ if .IsHome }}
+      {{ partial "menu_graphic_list.html" . }}
+      {{ else }}
+      {{ partial "pages_graphic_list.html" . }}
+      {{ end }}
+    </div>
+  </section>
 </main>
 
 {{ partial "footer.html" . }}
