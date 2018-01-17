@@ -16,7 +16,7 @@ git clone https://github.com/CUUATS/plandocument.git
 Copy the [example configuration](https://github.com/CUUATS/plandocument/blob/master/example.config.yaml)
 to your Hugo site configuration, and edit the parameters as appropriate.
 
-## Usage
+## Features
 The Plan Document theme includes several custom features.
 
 ### Abstracts
@@ -46,6 +46,19 @@ Taglines can be used on listing pages to add large text next to the body text.
 
 ```
 tagline: A useful tagline
+```
+
+## Shortcodes
+The Plan Document theme also provides several custom shortcodes.
+
+### Lead
+The `lead` shortcode creates a paragraph of larger text for use at the
+beginning of a section:
+
+```
+{{<lead>}}
+This paragraph introduces the section.
+{{</lead>}}
 ```
 
 ## Development
