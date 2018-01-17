@@ -28,8 +28,8 @@ abstract: A summary of the page
 ```
 
 ### Page Banners
-The Plan Document theme supports page banners using the [USWDS Hero
-Component](https://components.standards.usa.gov/components/detail/hero.html).
+The Plan Document theme supports page banners using the [USWDS hero
+component](https://components.standards.usa.gov/components/detail/hero.html).
 To add a banner, add an image to the page bundle named `banner.jpg`. The image
 should be approximately 1600x800 pixels and should be web optimized. Then add
 front matter for the text of the banner:
@@ -50,6 +50,24 @@ tagline: A useful tagline
 
 ## Shortcodes
 The Plan Document theme also provides several custom shortcodes.
+
+### Accordion
+The `accordion` and `accordion-content` shortcodes create expandable sections
+using the [USWDS accordion
+component](https://components.standards.usa.gov/components/detail/accordion--default.html).
+The `accordion` shortcode accepts the optional parameters `border` and
+`multiselect`, both of which are `false` by default:
+
+```
+{{<accordion border="true" multiselect="true">}}
+  {{<accordion-content title="Section One">}}
+    Section one text.
+  {{</accordion-content>}}
+  {{<accordion-content title="Section Two">}}
+    Section two text.
+  {{</accordion-content>}}
+{{</accordion>}}
+```
 
 ### Lead
 The `lead` shortcode creates a paragraph of larger text for use at the

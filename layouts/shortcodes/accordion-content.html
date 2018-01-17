@@ -1,0 +1,9 @@
+<li>
+  {{ .Page.Scratch.Add "accordion" 1 }}
+  <button class="usa-accordion-button" aria-expanded="true" aria-controls="accordion-{{ .Page.Scratch.Get "accordion" }}">
+    {{ if .IsNamedParams }}{{ .Get "title" }}{{ else }}{{ .Get 0 }}{{ end }}
+  </button>
+  <div id="accordion-{{ .Page.Scratch.Get "accordion" }}" class="usa-accordion-content">
+    {{ .Inner }}
+  </div>
+</li>
