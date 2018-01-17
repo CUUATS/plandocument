@@ -3712,6 +3712,9 @@ input[type=search] {
 .plandoc-footer-logo img {
   height: 120px; }
 
+.plandoc-rounded-thumbnail {
+  border-radius: 50%; }
+
 .usa-header {
   position: -webkit-sticky;
   position: sticky;
@@ -3719,5 +3722,8 @@ input[type=search] {
   .usa-header:before, .usa-header:after {
     content: '';
     display: table; }
+
+.usa-media_block-body p {
+  font-size: 90%; }
 
 /*# sourceMappingURL=bundle.css.map */

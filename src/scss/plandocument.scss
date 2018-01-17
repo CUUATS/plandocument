@@ -5,6 +5,10 @@
   height: 120px;
 }
 
+.plandoc-rounded-thumbnail {
+  border-radius: 50%;
+}
+
 .usa-header {
   position: -webkit-sticky;
   position: sticky;
@@ -14,4 +18,8 @@
     content: '';
     display: table;
   }
+}
+
+.usa-media_block-body p {
+  font-size: 90%;
 }
