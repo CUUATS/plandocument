@@ -1,0 +1,1 @@
+<a class="usa-button{{ if eq (.Get "color") "secondary" }} usa-button-secondary{{ end }}{{if eq (.Get "size") "large" }} usa-button-big{{ end }}" href="{{ .Get "href" | relURL }}">{{ .Inner | htmlEscape }}</a>

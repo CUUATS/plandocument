@@ -69,6 +69,19 @@ The `accordion` shortcode accepts the optional parameters `border` and
 {{</accordion>}}
 ```
 
+### Button
+The `button` shortcode creates a button using the [USWDS button
+component](https://components.standards.usa.gov/components/detail/buttons--default.html).
+It accepts the following parameters:
+
+* `href`: the destination URL
+* `size`: `large` or `small` (default)
+* `color`: `primary` (default) or `secondary`
+
+```
+{{<button href="/example/page"> size="large"}}Button Text{{</button>}}
+```
+
 ### Lead
 The `lead` shortcode creates a paragraph of larger text for use at the
 beginning of a section:
