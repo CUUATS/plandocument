@@ -9,6 +9,31 @@
   border-radius: 50%;
 }
 
+figure.plandoc-image {
+  margin: 1em 0;
+  @include media($medium-screen) {
+    &.plandoc-image-left {
+      clear: both;
+      float: left;
+      margin-right: 1em;
+      width: 50%;
+    }
+    &.plandoc-image-right {
+      clear: both;
+      float: left;
+      margin-left: 1em;
+      width: 50%;
+    }
+  }
+  .plandoc-image-caption {
+    font-size: 80%;
+  }
+  .plandoc-image-attr {
+    font-size: 80%;
+    font-style: italic;
+  }
+}
+
 .usa-header {
   position: -webkit-sticky;
   position: sticky;

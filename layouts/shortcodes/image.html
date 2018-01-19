@@ -1,0 +1,18 @@
+<figure class="plandoc-image plandoc-image-{{ default "full" (.Get "position") }}">
+  {{ with .Get "link" }}<a href="{{.}}">{{ end }}
+    <img src="{{ .Get "src" }}" {{ if or (.Get "alt") (.Get "caption") }}alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" }}{{ end }}" {{ end }}/>
+  {{ if .Get "link" }}</a>{{ end }}
+  {{ if or (.Get "attr") (.Get "caption") }}
+  <figcaption>
+    {{ with .Get "caption" }}<span class="plandoc-image-caption">{{ . }}</span>{{ end }}
+    {{ if .Get "attr" }}
+    <span class="plandoc-image-attr">
+      <span class="title">Image:</span>
+      {{ if .Get "attrlink" }}<a href="{{ .Get "attrlink" }}" class="attr">{{ else }}<span class="attr">{{ end }}
+        {{ .Get "attr" }}
+      {{ if .Get "attrlink"}}</a>{{ else }}</span>{{ end }}
+    </span>
+    {{ end }}
+  </figcaption>
+  {{ end }}
+</figure>

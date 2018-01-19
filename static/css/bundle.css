@@ -3715,6 +3715,25 @@ input[type=search] {
 .plandoc-rounded-thumbnail {
   border-radius: 50%; }
 
+figure.plandoc-image {
+  margin: 1em 0; }
+  @media screen and (min-width: 600px) {
+    figure.plandoc-image.plandoc-image-left {
+      clear: both;
+      float: left;
+      margin-right: 1em;
+      width: 50%; }
+    figure.plandoc-image.plandoc-image-right {
+      clear: both;
+      float: left;
+      margin-left: 1em;
+      width: 50%; } }
+  figure.plandoc-image .plandoc-image-caption {
+    font-size: 80%; }
+  figure.plandoc-image .plandoc-image-attr {
+    font-size: 80%;
+    font-style: italic; }
+
 .usa-header {
   position: -webkit-sticky;
   position: sticky;

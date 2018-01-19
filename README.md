@@ -82,6 +82,23 @@ It accepts the following parameters:
 {{<button href="/example/page"> size="large"}}Button Text{{</button>}}
 ```
 
+### Image
+The `image` shortcode adds a content image with additional details such as
+alternative text, a caption, and an image source. It accepts the following
+parameters:
+
+* `src`: source image
+* `link`: destination URL
+* `alt`: alternative text
+* `caption`: image caption
+* `attr`: image attribution text
+* `attrlink`: image attribution URL
+* `position`: `left`, `right`, or `full` (default)
+
+```
+{{<image src="example.jpg" link="/destination" alt="An example in the wild" caption="This is the caption." attr="Agency" attrlink="https://example.org/" position="left">}}
+```
+
 ### Lead
 The `lead` shortcode creates a paragraph of larger text for use at the
 beginning of a section:
