@@ -1,4 +1,4 @@
-{{ $image := .Resources.GetByPrefix "banner" }}
+{{ $image := .Resources.GetMatch "banner.*" }}
 {{ if $image }}
 <section class="usa-hero" style="background-image: url('{{ $image.RelPermalink }}');">
   <div class="usa-grid">

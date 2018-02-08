@@ -1,6 +1,6 @@
 <div class="usa-width-one-half usa-media_block">
   <a href="{{ .URL | relURL }}">
-    {{ $image := .Resources.GetByPrefix "banner" }}
+    {{ $image := .Resources.GetMatch "banner.*" }}
     {{ if $image }}
     {{ $thumbnail := $image.Fill "124x124 Center" }}
     <img class="usa-media_block-img plandoc-rounded-thumbnail" src="{{ $thumbnail.RelPermalink }}" aria-hidden="true">
