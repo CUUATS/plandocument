@@ -3725,7 +3725,7 @@ figure.plandoc-image {
       width: 50%; }
     figure.plandoc-image.plandoc-image-right {
       clear: both;
-      float: left;
+      float: right;
       margin-left: 1em;
       width: 50%; } }
   figure.plandoc-image .plandoc-image-caption {
