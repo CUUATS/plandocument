@@ -1,0 +1,34 @@
+{{ partial "load_table_data.html" . }}
+{{- $title := (.Get "title") }}
+{{- $desc := (.Get "description") }}
+{{- $source := (.Get "source") }}
+{{- $head := int (default "1" (.Get "header")) }}
+{{- $data := $.Scratch.Get "data" }}
+<table class="plandoc-table">
+  {{- if or $title $desc }}
+  <caption>
+    {{ if $title }}<span class="plandoc-table-title">{{ $title }}</span>{{ end }}
+    {{ if $desc }}<span class="plandoc-table-description">{{ $desc }}</span>{{ end }}
+  </caption>
+  {{- end }}
+  {{ range $i, $r := $data }}
+  {{- $row := add $i 1 -}}
+  {{- $tag := cond (and (gt $head 0) (lt $row (add $head 1))) "th" "td" -}}
+  {{- if and (gt $head 0) (eq $i 0) -}}<thead>{{- end -}}
+  {{ if eq $head $i }}<tbody>{{ end }}
+    <tr>
+      {{- range . }}
+      {{ printf "<%s>" $tag | safeHTML }}
+        {{- . | htmlEscape -}}
+      {{ printf "</%s>" $tag | safeHTML }}
+      {{- end }}
+    </tr>
+  {{ if and (gt $head 0) (eq $row $head) }}</thead>{{ end }}
+  {{ if eq $row (len $data) }}</tbody>{{ end }}
+  {{- end }}
+</table>
+{{- if $source }}
+<p class="plandoc-table-data-source">
+  <strong>Source:</strong> {{ $source }}
+</p>
+{{- end }}

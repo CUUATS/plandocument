@@ -109,6 +109,27 @@ This paragraph introduces the section.
 {{</lead>}}
 ```
 
+### Table
+The `table` shortcode creates a table using data loaded from a CSV file. It
+accepts the following parameters:
+
+* `url`: path to a CSV file containing the table data
+* `header`: number of header rows in the data (default: `1`)
+* `rows`: comma-separated list of row numbers to include. Negative numbers
+  can be used to remove the corresponding rows.
+  Row selection occurs after row/column switching, if enabled.
+* `columns`: comma-separated list of column numbers to include.
+  Negative numbers can be used to remove the corresponding columns.
+  Column selection occurs after row/column switching, if enabled.
+* `switch`: switch rows and columns
+* `title`: title of the table
+* `description`: brief summary of the table
+* `source`: data source
+
+```
+{{<table url="results.csv" rows="1,2,3,5" columns="-2" title="Survey Results" description="Results for employees over the age of 40" source="Employee satisfaction survey, March 2017">}}
+```
+
 ## Development
 To customize the Plan Document theme, install its dependencies using
 [yarn](https://yarnpkg.com/en/):

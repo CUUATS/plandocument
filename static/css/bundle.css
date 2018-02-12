@@ -3734,6 +3734,25 @@ figure.plandoc-image {
     font-size: 80%;
     font-style: italic; }
 
+.plandoc-table {
+  width: 100%; }
+  .plandoc-table caption {
+    font-weight: normal; }
+    .plandoc-table caption .plandoc-table-title {
+      font-weight: bold;
+      font-size: 1.3em;
+      display: block;
+      text-align: center; }
+    .plandoc-table caption .plandoc-table-description {
+      display: block;
+      font-family: "Open Sans", Helvetica, Arial, sans-serif;
+      text-align: center; }
+
+.plandoc-table-data-source {
+  font-size: 0.8em;
+  font-variant: italic;
+  margin-top: -1.5em; }
+
 .usa-header {
   position: -webkit-sticky;
   position: sticky;

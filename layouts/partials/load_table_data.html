@@ -1,0 +1,37 @@
+{{- $csv_path := printf "/content%s" ((.Page.Resources.GetMatch (.Get "url"))).RelPermalink }}
+{{- $.Scratch.Set "data" (getCSV (default "," (.Get "separator")) $csv_path) }}
+{{- if eq (.Get "switch") "true" }}
+  {{- $data := $.Scratch.Get "data" }}
+  {{- $.Scratch.Set "data" slice }}
+  {{- range $i, $c := (seq (len (index $data 1))) }}
+    {{- $.Scratch.Add "data" (slice (apply $data "index" "." $i)) }}
+  {{- end }}
+{{- end }}
+{{- if (.Get "rows") }}
+  {{- $data := $.Scratch.Get "data" }}
+  {{- $.Scratch.Set "data" slice }}
+  {{- $neg := in (.Get "rows") "-" }}
+  {{- $rows := apply (split (.Get "rows") ",") "int" "." }}
+  {{- range $i, $r := $data }}
+    {{- $row := add $i 1 }}
+    {{- if (or (in $rows $row) (and $neg (not (in $rows (mul $row -1))))) }}
+      {{- $.Scratch.Add "data" (slice $r) }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- if (.Get "columns") }}
+  {{- $data := $.Scratch.Get "data" }}
+  {{- $.Scratch.Set "data" slice }}
+  {{- $neg := in (.Get "columns") "-" }}
+  {{- $cols := apply (split (.Get "columns") ",") "int" "." }}
+  {{- range $data }}
+    {{- $.Scratch.Set "row" slice }}
+    {{- range $i, $c := . }}
+      {{- $col := add $i 1 }}
+      {{- if (or (in $cols $col) (and $neg (not (in $cols (mul $col -1))))) }}
+        {{- $.Scratch.Add "row" . }}
+      {{- end }}
+    {{- end }}
+    {{- $.Scratch.Add "data" (slice ($.Scratch.Get "row")) }}
+  {{- end }}
+{{- end }}
