@@ -3734,7 +3734,12 @@ figure.plandoc-image {
     font-size: 80%;
     font-style: italic; }
 
+.plandoc-table-scroll {
+  overflow-x: auto;
+  width: 100%; }
+
 .plandoc-table {
+  font-size: 0.9em;
   width: 100%; }
   .plandoc-table caption {
     font-weight: normal; }

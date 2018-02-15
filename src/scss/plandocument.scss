@@ -34,7 +34,13 @@ figure.plandoc-image {
   }
 }
 
+.plandoc-table-scroll {
+  overflow-x: auto;
+  width: 100%;
+}
+
 .plandoc-table {
+  font-size: 0.9em;
   width: 100%;
   caption {
     font-weight: normal;

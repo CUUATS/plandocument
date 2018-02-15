@@ -4,6 +4,7 @@
 {{- $source := (.Get "source") }}
 {{- $head := int (default "1" (.Get "header")) }}
 {{- $data := $.Scratch.Get "data" }}
+<div class="plandoc-table-scroll">
 <table class="plandoc-table">
   {{- if or $title $desc }}
   <caption>
@@ -32,3 +33,4 @@
   {{ print "**Source:** " $source | markdownify }}
 </div>
 {{- end }}
+</div>
