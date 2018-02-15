@@ -3748,10 +3748,12 @@ figure.plandoc-image {
       font-family: "Open Sans", Helvetica, Arial, sans-serif;
       text-align: center; }
 
-.plandoc-table-data-source {
+.plandoc-table-data-source,
+.usa-content .plandoc-table-data-source {
   font-size: 0.8em;
   font-variant: italic;
-  margin-top: -1.5em; }
+  margin-top: -1.5em;
+  max-width: 100%; }
 
 .usa-header {
   position: -webkit-sticky;
