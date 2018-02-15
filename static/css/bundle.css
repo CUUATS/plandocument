@@ -3752,6 +3752,8 @@ figure.plandoc-image {
       display: block;
       font-family: "Open Sans", Helvetica, Arial, sans-serif;
       text-align: center; }
+  .plandoc-table tfoot td {
+    font-weight: bold; }
 
 .plandoc-table-extra {
   font-size: 0.8em;

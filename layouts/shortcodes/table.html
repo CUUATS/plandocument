@@ -4,7 +4,14 @@
 {{- $source := (.Get "source") }}
 {{- $notes := (.Get "notes") }}
 {{- $head := int (default "1" (.Get "header")) }}
+{{- $foot := int (default "0" (.Get "footer")) }}
 {{- $data := $.Scratch.Get "data" }}
+{{- $head_start := cond (gt $head 0) 1 0 }}
+{{- $head_end := $head }}
+{{- $body_start := add $head_end 1 }}
+{{- $body_end := sub (len $data) $foot }}
+{{- $foot_start := add $body_end 1 }}
+{{- $foot_end := cond (gt $foot 0) (len $data) 0 }}
 <div class="plandoc-table-scroll">
 <table class="plandoc-table">
   {{- if or $title $desc }}
@@ -16,8 +23,9 @@
   {{ range $i, $r := $data }}
   {{- $row := add $i 1 -}}
   {{- $tag := cond (and (gt $head 0) (lt $row (add $head 1))) "th" "td" -}}
-  {{- if and (gt $head 0) (eq $i 0) -}}<thead>{{- end -}}
-  {{ if eq $head $i }}<tbody>{{ end }}
+  {{ if eq $row $head_start -}}<thead>{{- end -}}
+  {{- if eq $row $body_start -}}<tbody>{{- end -}}
+  {{- if eq $row $foot_start -}}<tfoot>{{- end }}
     <tr>
       {{- range . }}
       {{ printf "<%s>" $tag | safeHTML }}
@@ -25,8 +33,9 @@
       {{ printf "</%s>" $tag | safeHTML }}
       {{- end }}
     </tr>
-  {{ if and (gt $head 0) (eq $row $head) }}</thead>{{ end }}
-  {{ if eq $row (len $data) }}</tbody>{{ end }}
+  {{ if eq $row $head_end -}}</thead>{{- end -}}
+  {{- if eq $row $body_end -}}</tbody>{{- end -}}
+  {{- if eq $row $foot_end -}}</tfoot>{{- end }}
   {{- end }}
 </table>
 {{- if or $source $notes }}
