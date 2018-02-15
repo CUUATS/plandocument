@@ -123,6 +123,7 @@ accepts the following parameters:
 
 * `url`: path to a CSV file containing the table data
 * `header`: number of header rows in the data (default: `1`)
+* `footer`: number of footer rows in the data (default: `0`)
 * `rows`: comma-separated list of row numbers to include. Negative numbers
   can be used to remove the corresponding rows.
   Row selection occurs after row/column switching, if enabled.
