@@ -12,6 +12,14 @@ cd themes
 git clone https://github.com/CUUATS/plandocument.git
 ```
 
+Then build the static resources using [Node.js](https://nodejs.org/):
+
+```
+cd plandocument
+npm install
+npm run build
+```
+
 ## Configuration
 Copy the [example configuration](https://github.com/CUUATS/plandocument/blob/master/example.config.yaml)
 to your Hugo site configuration, and edit the parameters as appropriate.
