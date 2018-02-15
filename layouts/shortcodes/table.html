@@ -28,7 +28,7 @@
   {{- end }}
 </table>
 {{- if $source }}
-<p class="plandoc-table-data-source">
-  <strong>Source:</strong> {{ $source }}
-</p>
+<div class="plandoc-table-data-source">
+  {{ print "**Source:** " $source | markdownify }}
+</div>
 {{- end }}
