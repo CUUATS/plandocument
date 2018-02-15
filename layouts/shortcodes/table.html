@@ -19,7 +19,7 @@
     <tr>
       {{- range . }}
       {{ printf "<%s>" $tag | safeHTML }}
-        {{- . | htmlEscape -}}
+        {{- . -}}
       {{ printf "</%s>" $tag | safeHTML }}
       {{- end }}
     </tr>
