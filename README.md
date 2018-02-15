@@ -125,6 +125,7 @@ accepts the following parameters:
 * `title`: title of the table
 * `description`: brief summary of the table
 * `source`: data source
+* `notes`: additional information about the data
 
 ```
 {{<table url="results.csv" rows="1,2,3,5" columns="-2" title="Survey Results" description="Results for employees over the age of 40" source="Employee satisfaction survey, March 2017">}}

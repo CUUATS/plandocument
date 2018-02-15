@@ -2,6 +2,7 @@
 {{- $title := (.Get "title") }}
 {{- $desc := (.Get "description") }}
 {{- $source := (.Get "source") }}
+{{- $notes := (.Get "notes") }}
 {{- $head := int (default "1" (.Get "header")) }}
 {{- $data := $.Scratch.Get "data" }}
 <div class="plandoc-table-scroll">
@@ -28,9 +29,14 @@
   {{ if eq $row (len $data) }}</tbody>{{ end }}
   {{- end }}
 </table>
-{{- if $source }}
-<div class="plandoc-table-data-source">
-  {{ print "**Source:** " $source | markdownify }}
+{{- if or $source $notes }}
+<div class="plandoc-table-extra">
+  {{ with $source -}}
+    <p class="plandoc-table-data-source">{{ print "**Source:** " . | markdownify }}</p>
+  {{- end }}
+  {{ with $notes -}}
+    <p class="plandoc-table-notes">{{ print "**Notes:** " . | markdownify }}</p>
+  {{- end }}
 </div>
 {{- end }}
 </div>

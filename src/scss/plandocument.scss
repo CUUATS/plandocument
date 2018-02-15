@@ -58,10 +58,13 @@ figure.plandoc-image {
   }
 }
 
-.plandoc-table-data-source {
+.plandoc-table-extra {
   font-size: 0.8em;
   font-variant: italic;
-  margin-top: -1.5em;
+  margin-top: -1.25em;
+  p {
+    margin: 0 0 0.25em;
+  }
 }
 
 .usa-header {
