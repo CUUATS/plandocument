@@ -16,7 +16,7 @@
     <div class="usa-navbar">
       <div class="usa-logo" id="extended-logo">
         <em class="usa-logo-text">
-          <a href="/"
+          <a href="{{ "/" | relURL }}"
             title="Home"
             aria-label="Home">{{ .Site.Title }}</a>
         </em>
@@ -39,12 +39,12 @@
             <ul id="extended-nav-section-{{ $index }}" class="usa-nav-submenu">
               {{ range .Page.Pages }}
               <li>
-                <a href="{{ .URL | relURL }}">{{ .Title }}</a>
+                <a href="{{ .URL }}">{{ .Title }}</a>
               </li>
               {{ end }}
             </ul>
             {{ else }}
-            <a class="usa-nav-link" href="{{ .URL | relURL }}">
+            <a class="usa-nav-link" href="{{ .URL }}">
               <span>{{ .Name }}</span>
             </a>
             {{ end }}
@@ -67,7 +67,7 @@
     				</li>
             {{ range .Site.Menus.eyebrow }}
     				<li>
-              <a href="{{ .URL | relURL }}">
+              <a href="{{ .URL }}">
                 <span>{{ .Name }}</span>
               </a>
     				</li>

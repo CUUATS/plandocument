@@ -6,7 +6,7 @@
     {{ range .Page.CurrentSection.Pages }}
     <li>
       {{ if eq $pageUID .UniqueID }}
-      <a class="usa-current" href="{{ .URL | relURL }}">{{ .Title }}</a>
+      <a class="usa-current" href="{{ .URL }}">{{ .Title }}</a>
       {{ $headers := findRE "<h2.*?>(.|\n])+?</h2>" .Content }}
       {{ if $headers }}
       <ul class="usa-sidenav-sub_list">
@@ -18,7 +18,7 @@
       </ul>
       {{ end }}
       {{ else }}
-      <a href="{{ .URL | relURL }}">{{ .Title }}</a>
+      <a href="{{ .URL }}">{{ .Title }}</a>
       {{ end }}
     </li>
     {{ end }}

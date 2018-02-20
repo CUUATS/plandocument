@@ -9,7 +9,7 @@
           <ul class="usa-unstyled-list">
             {{ range .Site.Menus.main }}
             <li class="usa-width-one-sixth usa-footer-primary-content">
-              <a class="usa-footer-primary-link" href="{{ .URL | relURL }}">{{ .Name }}</a>
+              <a class="usa-footer-primary-link" href="{{ .URL }}">{{ .Name }}</a>
             </li>
             {{ end }}
           </ul>

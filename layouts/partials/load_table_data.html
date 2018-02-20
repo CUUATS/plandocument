@@ -1,4 +1,4 @@
-{{- $csv_path := printf "/content%s" ((.Page.Resources.GetMatch (.Get "url"))).RelPermalink }}
+{{- $csv_path := printf "/content/%s%s" (.Page.File.Dir) (.Get "url") }}
 {{- $.Scratch.Set "data" (getCSV (default "," (.Get "separator")) $csv_path) }}
 {{- if eq (.Get "switch") "true" }}
   {{- $data := $.Scratch.Get "data" }}

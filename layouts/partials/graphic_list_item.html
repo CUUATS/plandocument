@@ -1,5 +1,5 @@
 <div class="usa-width-one-half usa-media_block">
-  <a href="{{ .URL | relURL }}">
+  <a href="{{ .URL }}">
     {{ $image := .Resources.GetMatch "banner.*" }}
     {{ if $image }}
     {{ $thumbnail := $image.Fill "124x124 Center" }}
@@ -14,7 +14,7 @@
       <p>{{ (default .Params.abstract .Summary) | htmlEscape }}</p>
       {{ end }}
       <p>
-        <a href="{{ .URL | relURL }}">
+        <a href="{{ .URL }}">
           Learn more
           <span class="usa-sr-only"> about {{ .Title }}</span>
         </a>
