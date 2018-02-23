@@ -135,6 +135,7 @@ accepts the following parameters:
 * `description`: brief summary of the table
 * `source`: data source
 * `notes`: additional information about the data
+* `markdown`: if `true`, treat the table contents as markdown
 
 ```
 {{<table url="results.csv" rows="1,2,3,5" columns="-2" title="Survey Results" description="Results for employees over the age of 40" source="Employee satisfaction survey, March 2017">}}

@@ -3,6 +3,7 @@
 {{- $desc := (.Get "description") }}
 {{- $source := (.Get "source") }}
 {{- $notes := (.Get "notes") }}
+{{- $md := eq (.Get "markdown") "true" -}}
 {{- $head := int (default "1" (.Get "header")) }}
 {{- $foot := int (default "0" (.Get "footer")) }}
 {{- $data := $.Scratch.Get "data" }}
@@ -29,7 +30,7 @@
     <tr>
       {{- range . }}
       {{ printf "<%s>" $tag | safeHTML }}
-        {{- . -}}
+        {{- if $md -}}{{- . | markdownify -}}{{- else -}}{{- . -}}{{- end -}}
       {{ printf "</%s>" $tag | safeHTML }}
       {{- end }}
     </tr>
