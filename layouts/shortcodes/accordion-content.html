@@ -4,6 +4,6 @@
     {{ if .IsNamedParams }}{{ .Get "title" }}{{ else }}{{ .Get 0 }}{{ end }}
   </button>
   <div id="accordion-{{ .Page.Scratch.Get "accordion" }}" class="usa-accordion-content">
-    {{ .Inner }}
+    {{ .Inner | markdownify }}
   </div>
 </li>
