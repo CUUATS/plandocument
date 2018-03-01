@@ -1,5 +1,6 @@
 {{- $csv_path := printf "/content/%s%s" (.Page.File.Dir) (.Get "url") }}
-{{- $.Scratch.Set "data" (getCSV (default "," (.Get "separator")) $csv_path) }}
+{{- $csv_url := cond (in $csv_path `\`) (replace $csv_path `\` `/`) $csv_path -}}
+{{- $.Scratch.Set "data" (getCSV (default "," (.Get "separator")) $csv_url) }}
 {{- if eq (.Get "switch") "true" }}
   {{- $data := $.Scratch.Get "data" }}
   {{- $.Scratch.Set "data" slice }}
