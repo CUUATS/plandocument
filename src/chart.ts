@@ -8,6 +8,8 @@ export type ChartType = 'bar' | 'stacked-bar' | 'pie' | 'line'
   | 'area' | 'scatter';
 
 export interface ChartOptions {
+  dateRegex?: RegExp;
+  numberRegex?: RegExp;
   type?: ChartType;
   title?: string;
   legend?: boolean;
@@ -24,6 +26,8 @@ export class Chart {
   chart: Plottable.Components.Table;
   data: string | any[][];
   defaultOptions: ChartOptions = {
+    dateRegex: /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/,
+    numberRegex: /\/
     type: 'bar',
     title: null,
     legend: true,
@@ -95,7 +99,21 @@ export class Chart {
   }
 
   getScale(axis: 'x' | 'y') {
+    if (this.options.type === 'pie' && axis === 'y') return null;
 
+    let axisType = (axis === 'x') ? this.options.xtype : this.options.ytype;
+    if (axisType === 'auto') axisType = this.guessAxisType(axis);
+
+    if (axisType === 'category') return
+  }
+
+  guessAxisType(axis: 'x' | 'y') : AxisType {
+    let value = (axis === 'x') ? this.data[1][0] : this.data[1][1];
+
+    if (typeof value !== 'string')
+      return (value instanceof Date) ? 'time' : 'numeric';
+
+    if (this.options.dateRegex.test(value)) return 'time';
   }
 
   marshall(value: any, row: number, col: number) {
