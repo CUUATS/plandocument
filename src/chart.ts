@@ -19,14 +19,14 @@ export type SeriesScaleType = Plottable.Scales.Color;
 
 export interface ChartOptions {
   dateRegex?: RegExp;
-  numberRegex?: RegExp;
-  type?: ChartType;
-  title?: string;
   legend?: boolean;
   legendAlignment: Alignment;
   legendRowWidth: number;
   lineWidth?: number;
+  numberRegex?: RegExp;
   redrawRate?: number;
+  title?: string;
+  type?: ChartType;
   xLabel?: string;
   xRotate?: number;
   xType?: AxisTypeOption;
@@ -41,14 +41,14 @@ export class Chart {
   data: string | any[][];
   defaultOptions: ChartOptions = {
     dateRegex: /^\s*(\d{1,2})\/(\d{1,2})\/(\d{4})\s*$/,
-    numberRegex: /^[\s$]*([\d.]+)[\s%]*$/,
-    type: 'bar',
-    title: null,
     legend: true,
     legendAlignment: 'right',
     legendRowWidth: 1,
     lineWidth: 2,
+    numberRegex: /^[\s$]*([\d.]+)[\s%]*$/,
     redrawRate: 15,
+    title: null,
+    type: 'bar',
     xLabel: null,
     xType: 'auto',
     xRotate: 0,
