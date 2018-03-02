@@ -1,4 +1,5 @@
 {{ partial "load_table_data.html" . -}}
+{{- with (.Get "grid-lines") -}}{{- $.Scratch.SetInMap "chartopts" "gridLines" (eq . "true") -}}{{- end -}}
 {{- with (.Get "legend") -}}{{- $.Scratch.SetInMap "chartopts" "legend" . -}}{{- end -}}
 {{- with (.Get "legend-alignment") -}}{{- $.Scratch.SetInMap "chartopts" "legendAlignment" . -}}{{- end -}}
 {{- with (.Get "legend-row-width") -}}{{- $.Scratch.SetInMap "chartopts" "legendRowWidth" (int .) -}}{{- end -}}

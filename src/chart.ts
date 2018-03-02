@@ -19,9 +19,10 @@ export type SeriesScaleType = Plottable.Scales.Color;
 
 export interface ChartOptions {
   dateRegex?: RegExp;
+  gridLines?: boolean;
   legend?: boolean;
-  legendAlignment: Alignment;
-  legendRowWidth: number;
+  legendAlignment?: Alignment;
+  legendRowWidth?: number;
   lineWidth?: number;
   numberRegex?: RegExp;
   redrawRate?: number;
@@ -41,6 +42,7 @@ export class Chart {
   data: string | any[][];
   defaultOptions: ChartOptions = {
     dateRegex: /^\s*(\d{1,2})\/(\d{1,2})\/(\d{4})\s*$/,
+    gridLines: false,
     legend: true,
     legendAlignment: 'right',
     legendRowWidth: 1,
@@ -155,7 +157,7 @@ export class Chart {
     if (this.options.type === 'pie') return null;
     let scale = (axis === 'x') ? this.xScale : this.yScale;
     let position : AxisPosition = (axis === 'x') ? 'bottom' : 'left';
-    
+
     let angle = (axis === 'x') ? this.options.xAngle : this.options.yAngle;
     if ([-90, 0, 90].indexOf(angle) === -1) angle = 0;
 
@@ -189,12 +191,16 @@ export class Chart {
 
   getPlots() : Plottable.Components.Group {
     let plots = new Plottable.Components.Group();
+    if (this.options.gridLines && this.options.type !== 'pie') plots.append(
+      new Plottable.Components.Gridlines(this.xScale, this.yScale));
+    
     for (let col = 1; col < this.data[0].length; col++) {
       let seriesName = this.data[0][col];
       let dataset = this.getDataset(col);
       let plot = this.getPlot(seriesName, dataset);
       plots.append(plot);
     }
+
     return plots;
   }
 
