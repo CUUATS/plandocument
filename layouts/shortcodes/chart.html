@@ -3,7 +3,9 @@
 {{- with (.Get "legend-alignment") -}}{{- $.Scratch.SetInMap "chartopts" "legendAlignment" . -}}{{- end -}}
 {{- with (.Get "legend-row-width") -}}{{- $.Scratch.SetInMap "chartopts" "legendRowWidth" (int .) -}}{{- end -}}
 {{- with (.Get "title") -}}{{- $.Scratch.SetInMap "chartopts" "title" . -}}{{- end -}}
+{{- with (.Get "xangle") -}}{{- $.Scratch.SetInMap "chartopts" "xAngle" (int .) -}}{{- end -}}
 {{- with (.Get "xlabel") -}}{{- $.Scratch.SetInMap "chartopts" "xLabel" . -}}{{- end -}}
+{{- with (.Get "yangle") -}}{{- $.Scratch.SetInMap "chartopts" "yAngle" (int .) -}}{{- end -}}
 {{- with (.Get "ylabel") -}}{{- $.Scratch.SetInMap "chartopts" "yLabel" . -}}{{- end -}}
 {{- $desc := (.Get "description") -}}
 {{- $data := $.Scratch.Get "data" -}}

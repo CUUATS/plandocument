@@ -27,11 +27,11 @@ export interface ChartOptions {
   redrawRate?: number;
   title?: string;
   type?: ChartType;
+  xAngle?: number;
   xLabel?: string;
-  xRotate?: number;
   xType?: AxisTypeOption;
+  yAngle?: number;
   yLabel?: string;
-  yRotate?: number;
   yType?: AxisTypeOption;
 }
 
@@ -49,11 +49,11 @@ export class Chart {
     redrawRate: 15,
     title: null,
     type: 'bar',
+    xAngle: 0,
     xLabel: null,
     xType: 'auto',
-    xRotate: 0,
+    yAngle: 0,
     yLabel: null,
-    yRotate: 0,
     yType: 'auto'
   };
   legend: Plottable.Components.Legend;
@@ -104,9 +104,9 @@ export class Chart {
     let result = {...this.defaultOptions, ...options};
 
     if (result.xType === 'auto')
-      result.xType = this.guessAxisType(result, data[1][0]);
+      result.xType = this.guessAxisType('x', result, data[1][0]);
     if (result.yType === 'auto')
-      result.yType = this.guessAxisType(result, data[1][1]);
+      result.yType = this.guessAxisType('y', result, data[1][1]);
 
     return result;
   }
@@ -141,11 +141,12 @@ export class Chart {
     return new Plottable.Scales.Linear();
   }
 
-  guessAxisType(options: ChartOptions, value: any) : AxisTypeOption {
+  guessAxisType(axis: AxisName, options: ChartOptions, value: any) :
+      AxisTypeOption {
     if (typeof value !== 'string')
-      return (value instanceof Date) ? 'time' : 'numeric';
+      return (value instanceof Date && axis === 'x') ? 'time' : 'numeric';
 
-    if (options.dateRegex.test(value)) return 'time';
+    if (axis === 'x' && options.dateRegex.test(value)) return 'time';
     if (options.numberRegex.test(value)) return 'numeric';
     return 'category';
   }
@@ -154,11 +155,15 @@ export class Chart {
     if (this.options.type === 'pie') return null;
     let scale = (axis === 'x') ? this.xScale : this.yScale;
     let position : AxisPosition = (axis === 'x') ? 'bottom' : 'left';
+    
+    let angle = (axis === 'x') ? this.options.xAngle : this.options.yAngle;
+    if ([-90, 0, 90].indexOf(angle) === -1) angle = 0;
 
     if (scale instanceof Plottable.Scales.Category)
-      return new Plottable.Axes.Category(scale, position);
-    if (position == 'bottom' && scale instanceof Plottable.Scales.Time)
-      return new Plottable.Axes.Time(scale, position);
+      return new Plottable.Axes.Category(scale, position)
+        .tickLabelAngle(angle);
+    if (scale instanceof Plottable.Scales.Time)
+      return new Plottable.Axes.Time(scale, 'bottom');
     if (scale instanceof Plottable.Scales.Linear)
       return new Plottable.Axes.Numeric(scale, position);
 
