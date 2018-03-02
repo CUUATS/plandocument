@@ -1,6 +1,7 @@
 import * as Plottable from 'plottable';
 
 
+export type Alignment = 'left' | 'center' | 'right';
 export type AxisName = 'x' | 'y';
 export type AxisPosition = 'bottom' | 'left' | 'right' | 'top';
 export type AxisType = Plottable.Axes.Category
@@ -22,6 +23,8 @@ export interface ChartOptions {
   type?: ChartType;
   title?: string;
   legend?: boolean;
+  legendAlignment: Alignment;
+  legendRowWidth: number;
   lineWidth?: number;
   redrawRate?: number;
   xLabel?: string;
@@ -42,6 +45,8 @@ export class Chart {
     type: 'bar',
     title: null,
     legend: true,
+    legendAlignment: 'right',
+    legendRowWidth: 1,
     lineWidth: 2,
     redrawRate: 15,
     xLabel: null,
@@ -51,6 +56,7 @@ export class Chart {
     yRotate: 0,
     yType: 'auto'
   };
+  legend: Plottable.Components.Legend;
   options: ChartOptions;
   plots: Plottable.Components.Group;
   resizeTimeout: number;
@@ -85,6 +91,8 @@ export class Chart {
 
     this.xLabel = this.getAxisLabel('x');
     this.yLabel = this.getAxisLabel('y');
+
+    this.legend = this.getLegend();
 
     this.plots = this.getPlots();
     this.table = this.getTable();
@@ -165,9 +173,18 @@ export class Chart {
       new Plottable.Components.AxisLabel(axisText, rotation) : null;
   }
 
+  getLegend() : Plottable.Components.Legend {
+    if (this.options.legend && this.sScale) {
+      return new Plottable.Components.Legend(this.sScale)
+        .maxEntriesPerRow(this.options.legendRowWidth)
+        .xAlignment(this.options.legendAlignment);
+    }
+    return null;
+  }
+
   getPlots() : Plottable.Components.Group {
     let plots = new Plottable.Components.Group();
-    for (let col = 1; col <= this.data[0].length; col++) {
+    for (let col = 1; col < this.data[0].length; col++) {
       let seriesName = this.data[0][col];
       let dataset = this.getDataset(col);
       let plot = this.getPlot(seriesName, dataset);
@@ -203,6 +220,7 @@ export class Chart {
   getTable() : Plottable.Components.Table {
     return new Plottable.Components.Table([
       [null, null, this.title],
+      [null, null, this.legend],
       [this.yLabel, this.yAxis, this.plots],
       [null, null, this.xAxis],
       [null, null, this.xLabel]

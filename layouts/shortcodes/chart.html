@@ -1,4 +1,7 @@
 {{ partial "load_table_data.html" . -}}
+{{- with (.Get "legend") -}}{{- $.Scratch.SetInMap "chartopts" "legend" . -}}{{- end -}}
+{{- with (.Get "legend-alignment") -}}{{- $.Scratch.SetInMap "chartopts" "legendAlignment" . -}}{{- end -}}
+{{- with (.Get "legend-row-width") -}}{{- $.Scratch.SetInMap "chartopts" "legendRowWidth" (int .) -}}{{- end -}}
 {{- with (.Get "title") -}}{{- $.Scratch.SetInMap "chartopts" "title" . -}}{{- end -}}
 {{- with (.Get "xlabel") -}}{{- $.Scratch.SetInMap "chartopts" "xLabel" . -}}{{- end -}}
 {{- with (.Get "ylabel") -}}{{- $.Scratch.SetInMap "chartopts" "yLabel" . -}}{{- end -}}
