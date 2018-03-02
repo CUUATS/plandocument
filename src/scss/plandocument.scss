@@ -71,6 +71,7 @@ figure.plandoc-image {
 }
 
 .plandoc-chart.plottable {
+  max-height: 100vh;
   .label text {
     font-family: $font-serif;
   }

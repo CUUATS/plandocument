@@ -10,10 +10,11 @@
 {{- with (.Get "ylabel") -}}{{- $.Scratch.SetInMap "chartopts" "yLabel" . -}}{{- end -}}
 {{- $desc := (.Get "description") -}}
 {{- $data := $.Scratch.Get "data" -}}
+{{- $height := int (default "400" (.Get "height")) -}}
 {{- $chartopts := $.Scratch.Get "chartopts" -}}
 {{- $.Scratch.Add "chartid" 1 -}}
 {{- $chartid := print "chart-" ($.Scratch.Get "chartid") -}}
-<div class="plandoc-chart" id="{{ $chartid }}" style="height: 400px;"></div>
+<div class="plandoc-chart" id="{{ $chartid }}" style="height: {{ $height }}px;"></div>
 <script type="text/javascript">
   window.addEventListener('load', function() {
     new pd.Chart('{{ $chartid }}',
