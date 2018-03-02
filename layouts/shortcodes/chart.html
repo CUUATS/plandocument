@@ -1,14 +1,17 @@
-{{ partial "load_table_data.html" . }}
-{{- $title := (.Get "title") }}
-{{- $desc := (.Get "description") }}
-{{- $data := $.Scratch.Get "data" }}
+{{ partial "load_table_data.html" . -}}
+{{- with (.Get "title") -}}{{- $.Scratch.SetInMap "chartopts" "title" . -}}{{- end -}}
+{{- with (.Get "xlabel") -}}{{- $.Scratch.SetInMap "chartopts" "xLabel" . -}}{{- end -}}
+{{- with (.Get "ylabel") -}}{{- $.Scratch.SetInMap "chartopts" "yLabel" . -}}{{- end -}}
+{{- $desc := (.Get "description") -}}
+{{- $data := $.Scratch.Get "data" -}}
+{{- $chartopts := $.Scratch.Get "chartopts" -}}
 {{- $.Scratch.Add "chartid" 1 -}}
 {{- $chartid := print "chart-" ($.Scratch.Get "chartid") -}}
 <div class="plandoc-chart" id="{{ $chartid }}" style="height: 400px;"></div>
 <script type="text/javascript">
   window.addEventListener('load', function() {
-    new pd.Chart('{{ $chartid }}', {{ $data | jsonify | safeJS }}, {
-      'title': {{ $title }}
-    });
+    new pd.Chart('{{ $chartid }}',
+      {{ $data | jsonify | safeJS }},
+      {{ $chartopts | jsonify | safeJS }});
   });
 </script>

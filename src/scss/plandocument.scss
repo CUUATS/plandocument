@@ -70,6 +70,15 @@ figure.plandoc-image {
   }
 }
 
+.plandoc-chart.plottable {
+  .label text {
+    font-family: $font-serif;
+  }
+  .axis text {
+    font-family: $font-sans;
+  }
+}
+
 .usa-header {
   position: -webkit-sticky;
   position: sticky;

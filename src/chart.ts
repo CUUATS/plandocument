@@ -1,11 +1,20 @@
 import * as Plottable from 'plottable';
 
-export type AxisType = 'auto' | 'category' | 'numeric' | 'time';
+
+export type AxisName = 'x' | 'y';
+export type AxisPosition = 'bottom' | 'left' | 'right' | 'top';
+export type AxisType = Plottable.Axes.Category
+  | Plottable.Axes.Numeric
+  | Plottable.Axes.Time;
+export type AxisTypeOption = 'auto' | 'category' | 'numeric' | 'time';
 export type AxisScaleType = Plottable.Scales.Category
   | Plottable.Scales.Linear
   | Plottable.Scales.Time;
+export type AxisScaleValue = number | string | Date;
 export type ChartType = 'bar' | 'stacked-bar' | 'pie' | 'line'
   | 'area' | 'scatter';
+export type SeriesScaleType = Plottable.Scales.Color;
+
 
 export interface ChartOptions {
   dateRegex?: RegExp;
@@ -13,34 +22,47 @@ export interface ChartOptions {
   type?: ChartType;
   title?: string;
   legend?: boolean;
-  xlabel?: string;
-  xrotate?: number;
-  xtype?: AxisType;
-  ylabel?: string;
-  yrotate?: number;
-  ytype?: AxisType;
+  lineWidth?: number;
+  redrawRate?: number;
+  xLabel?: string;
+  xRotate?: number;
+  xType?: AxisTypeOption;
+  yLabel?: string;
+  yRotate?: number;
+  yType?: AxisTypeOption;
 }
+
 
 export class Chart {
   el: HTMLElement;
-  chart: Plottable.Components.Table;
   data: string | any[][];
   defaultOptions: ChartOptions = {
-    dateRegex: /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/,
-    numberRegex: /\/
+    dateRegex: /^\s*(\d{1,2})\/(\d{1,2})\/(\d{4})\s*$/,
+    numberRegex: /^[\s$]*([\d.]+)[\s%]*$/,
     type: 'bar',
     title: null,
     legend: true,
-    xlabel: null,
-    xtype: 'auto',
-    xrotate: 0,
-    ylabel: null,
-    yrotate: 0,
-    ytype: 'auto'
+    lineWidth: 2,
+    redrawRate: 15,
+    xLabel: null,
+    xType: 'auto',
+    xRotate: 0,
+    yLabel: null,
+    yRotate: 0,
+    yType: 'auto'
   };
   options: ChartOptions;
-  xscale: AxisScaleType;
-  yscale: AxisScaleType;
+  plots: Plottable.Components.Group;
+  resizeTimeout: number;
+  sScale: SeriesScaleType;
+  table: Plottable.Components.Table;
+  title: Plottable.Components.TitleLabel;
+  xAxis: AxisType;
+  xLabel: Plottable.Components.AxisLabel;
+  xScale: AxisScaleType;
+  yAxis: AxisType;
+  yLabel: Plottable.Components.AxisLabel;
+  yScale: AxisScaleType;
 
   constructor(
       target: string | HTMLElement,
@@ -49,42 +71,36 @@ export class Chart {
     console.log('DATA', data);
     console.log('OPTIONS', options);
 
-    this.options = this.getOptions(options);
+    this.options = this.getOptions(options, data);
     this.el = this.getElement(target);
     this.data = this.getData(data);
-    this.xscale = this.getScale('x');
-    this.yscale = this.getScale('y');
+    this.title = this.getTitle();
 
-    var xScale = new Plottable.Scales.Linear();
-    var yScale = new Plottable.Scales.Linear();
+    this.sScale = this.getSeriesScale();
+    this.xScale = this.getAxisScale('x');
+    this.yScale = this.getAxisScale('y');
 
-    var xAxis = new Plottable.Axes.Numeric(xScale, "bottom");
-    var yAxis = new Plottable.Axes.Numeric(yScale, "left");
+    this.xAxis = this.getAxis('x');
+    this.yAxis = this.getAxis('y');
 
-    var plot = new Plottable.Plots.Line();
-    plot.x(function(d) { return d.x; }, xScale);
-    plot.y(function(d) { return d.y; }, yScale);
+    this.xLabel = this.getAxisLabel('x');
+    this.yLabel = this.getAxisLabel('y');
 
-    var chartData = [
-     { "x": 0, "y": 1 },
-     { "x": 1, "y": 2 },
-     { "x": 2, "y": 4 },
-     { "x": 3, "y": 8 }
-    ];
+    this.plots = this.getPlots();
+    this.table = this.getTable();
 
-    var dataset = new Plottable.Dataset(chartData);
-    plot.addDataset(dataset);
-
-    this.chart = new Plottable.Components.Table([
-     [yAxis, plot],
-     [null, xAxis]
-    ]);
-
-    this.chart.renderTo(this.el);
+    this.render();
   }
 
-  getOptions(options: ChartOptions) {
-    return {...this.defaultOptions, ...options};
+  getOptions(options: ChartOptions, data: any[][]) {
+    let result = {...this.defaultOptions, ...options};
+
+    if (result.xType === 'auto')
+      result.xType = this.guessAxisType(result, data[1][0]);
+    if (result.yType === 'auto')
+      result.yType = this.guessAxisType(result, data[1][1]);
+
+    return result;
   }
 
   getElement(target: string | HTMLElement) {
@@ -98,26 +114,133 @@ export class Chart {
     });
   }
 
-  getScale(axis: 'x' | 'y') {
-    if (this.options.type === 'pie' && axis === 'y') return null;
-
-    let axisType = (axis === 'x') ? this.options.xtype : this.options.ytype;
-    if (axisType === 'auto') axisType = this.guessAxisType(axis);
-
-    if (axisType === 'category') return
+  getTitle() : Plottable.Components.TitleLabel {
+    return (this.options.title) ?
+      new Plottable.Components.TitleLabel(this.options.title) : null;
   }
 
-  guessAxisType(axis: 'x' | 'y') : AxisType {
-    let value = (axis === 'x') ? this.data[1][0] : this.data[1][1];
+  getSeriesScale() {
+    // TODO: Add a color setting that can customize the series scale.
+    return new Plottable.Scales.Color();
+  }
 
+  getAxisScale(axis: AxisName) {
+    if (this.options.type === 'pie' && axis === 'y') return null;
+
+    let axisType = (axis === 'x') ? this.options.xType : this.options.yType;
+    if (axisType === 'category') return new Plottable.Scales.Category();
+    if (axisType === 'time') return new Plottable.Scales.Time();
+    return new Plottable.Scales.Linear();
+  }
+
+  guessAxisType(options: ChartOptions, value: any) : AxisTypeOption {
     if (typeof value !== 'string')
       return (value instanceof Date) ? 'time' : 'numeric';
 
-    if (this.options.dateRegex.test(value)) return 'time';
+    if (options.dateRegex.test(value)) return 'time';
+    if (options.numberRegex.test(value)) return 'numeric';
+    return 'category';
+  }
+
+  getAxis(axis: AxisName) : AxisType {
+    if (this.options.type === 'pie') return null;
+    let scale = (axis === 'x') ? this.xScale : this.yScale;
+    let position : AxisPosition = (axis === 'x') ? 'bottom' : 'left';
+
+    if (scale instanceof Plottable.Scales.Category)
+      return new Plottable.Axes.Category(scale, position);
+    if (position == 'bottom' && scale instanceof Plottable.Scales.Time)
+      return new Plottable.Axes.Time(scale, position);
+    if (scale instanceof Plottable.Scales.Linear)
+      return new Plottable.Axes.Numeric(scale, position);
+
+    return null;
+  }
+
+  getAxisLabel(axis: AxisName) {
+    let axisObj = (axis === 'x') ? this.xAxis : this.yAxis;
+    let axisText = (axis === 'x') ? this.options.xLabel : this.options.yLabel;
+    let rotation = (axis === 'x') ? 0 : -90;
+    return (axisObj && axisText) ?
+      new Plottable.Components.AxisLabel(axisText, rotation) : null;
+  }
+
+  getPlots() : Plottable.Components.Group {
+    let plots = new Plottable.Components.Group();
+    for (let col = 1; col <= this.data[0].length; col++) {
+      let seriesName = this.data[0][col];
+      let dataset = this.getDataset(col);
+      let plot = this.getPlot(seriesName, dataset);
+      plots.append(plot);
+    }
+    return plots;
+  }
+
+  getDataset(col: number) : Plottable.Dataset {
+    let data = [];
+    for (let row = 1; row < this.data.length; row++) {
+      data.push({
+        x: this.data[row][0],
+        y: this.data[row][col]
+      });
+    }
+    return new Plottable.Dataset(data);
+  }
+
+  getPlot(seriesName: string, dataset: Plottable.Dataset) {
+    let plot = new Plottable.Plots.Line()
+      .addDataset(dataset);
+
+    if (this.xScale) plot.x((d) => d.x, this.xScale);
+    if (this.yScale instanceof Plottable.Scales.Linear)
+      plot.y((d) => d.y, this.yScale);
+
+    if (this.sScale) plot.attr('stroke', this.sScale.scale(seriesName));
+    plot.attr('stroke-width', this.options.lineWidth);
+    return plot;
+  }
+
+  getTable() : Plottable.Components.Table {
+    return new Plottable.Components.Table([
+      [null, null, this.title],
+      [this.yLabel, this.yAxis, this.plots],
+      [null, null, this.xAxis],
+      [null, null, this.xLabel]
+    ]);
   }
 
   marshall(value: any, row: number, col: number) {
-    if (row === 0) return value;
+    if (row === 0) return value.toString();
+    if (col === 0) return this.toScaleType(value, this.xScale);
+    return this.toScaleType(value, this.yScale);
+  }
 
+  toScaleType(value: any, scale: AxisScaleType) : AxisScaleValue {
+    if (scale instanceof Plottable.Scales.Linear) {
+      if (typeof value === 'number') return value;
+      let matches = value.toString().match(this.options.numberRegex);
+      return (matches.length > 1) ? matches[1] : null;
+    }
+
+    if (scale instanceof Plottable.Scales.Time) {
+      if (value instanceof Date) return value;
+      let matches = value.toString().match(this.options.dateRegex);
+      return (matches.length > 3) ?
+        new Date(+matches[3], +matches[1] - 1, +matches[2]) : null;
+    }
+
+    return value.toString();
+  }
+
+  render() {
+    this.table.renderTo(this.el);
+
+    window.addEventListener('resize', () => {
+      if (this.resizeTimeout) return;
+      this.resizeTimeout = window.setTimeout(() => {
+        this.resizeTimeout = null;
+        this.table.redraw();
+      }, Math.round(1000 / this.options.redrawRate));
+    });
   }
 }
