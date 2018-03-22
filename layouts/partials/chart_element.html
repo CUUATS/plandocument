@@ -1,11 +1,18 @@
-{{- $desc := (.Get "description") -}}
+{{ partial "table_data.html" . -}}
+{{- $alttable := default "true" (.Get "alt-table") -}}
 {{- $height := int (default "400" (.Get "height")) -}}
 {{- $.Scratch.Add "chartid" 1 -}}
 {{- $chartclass := $.Scratch.Get "chartclass" -}}
 {{- $chartid := print "chart-" ($.Scratch.Get "chartid") -}}
 {{- $chartopts := $.Scratch.Get "chartopts" -}}
 {{- $data := $.Scratch.Get "data" -}}
-<div class="plandoc-chart" id="{{ $chartid }}" style="height: {{ $height }}px;"></div>
+<div class="plandoc-chart" id="{{ $chartid }}"
+  style="height: {{ $height }}px;" aria-hidden="true"></div>
+{{- if (eq $alttable "true") -}}
+<div class="plandoc-chart-alt-table sr-only">
+  {{ partial "table_element.html" . }}
+</div>
+{{- end -}}
 <script type="text/javascript">
   window.addEventListener('load', function() {
     window.chart = new pd.Charts[{{ $chartclass }}]('{{ $chartid }}',
