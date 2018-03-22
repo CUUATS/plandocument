@@ -1,0 +1,5 @@
+{{ partial "load_table_data.html" . -}}
+{{ partial "chart_options_xy.html" . -}}
+{{- with (.Get "line-width") -}}{{- $.Scratch.SetInMap "chartopts" "lineWidth" (int .) -}}{{- end -}}
+{{- $.Scratch.Set "chartclass" "LineChart" -}}
+{{ partial "chart_element.html" . -}}
