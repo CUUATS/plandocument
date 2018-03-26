@@ -20,7 +20,7 @@ export class BaseChart {
   data: string | any[][];
   legend: Plottable.Components.Legend;
   options: BaseChartOptions;
-  plots: Plottable.Components.Group;
+  plots: Plottable.Components.Group | Plottable.Components.Table;
   resizeTimeout: number;
   sScale: SeriesScaleType;
   table: Plottable.Components.Table;
@@ -94,14 +94,15 @@ export class BaseChart {
     if (scale instanceof Plottable.Scales.Linear) {
       if (typeof value === 'number') return value;
       let matches = value.toString().match(this.options.numberRegex);
-      return (matches.length > 1) ? matches[1] : null;
+      return (matches && matches.length > 1) ?
+        parseFloat(matches[1]) : undefined;
     }
 
     if (scale instanceof Plottable.Scales.Time) {
       if (value instanceof Date) return value;
       let matches = value.toString().match(this.options.dateRegex);
       return (matches.length > 3) ?
-        new Date(+matches[3], +matches[1] - 1, +matches[2]) : null;
+        new Date(+matches[3], +matches[1] - 1, +matches[2]) : undefined;
     }
 
     return value.toString();

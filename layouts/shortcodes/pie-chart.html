@@ -1,0 +1,6 @@
+{{ partial "chart_options_base.html" . -}}
+{{- with (.Get "inner-radius") -}}{{- $.Scratch.SetInMap "chartopts" "innerRadius" (int .) -}}{{- end -}}
+{{- with (.Get "labels") -}}{{- $.Scratch.SetInMap "chartopts" "labels" (eq . "true") -}}{{- end -}}
+{{- with (.Get "outer-radius") -}}{{- $.Scratch.SetInMap "chartopts" "outerRadius" (int .) -}}{{- end -}}
+{{- $.Scratch.Set "chartclass" "PieChart" -}}
+{{ partial "chart_element.html" . -}}

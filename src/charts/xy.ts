@@ -122,8 +122,8 @@ export class XYChart extends BaseChart {
     let data = [];
     for (let row = 1; row < this.data.length; row++) {
       data.push({
-        x: this.data[row][0],
-        y: this.data[row][col]
+        x: this.marshall(this.data[row][0], row, 0),
+        y: this.marshall(this.data[row][col], row, col)
       });
     }
     return new Plottable.Dataset(data);
