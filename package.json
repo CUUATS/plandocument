@@ -14,7 +14,7 @@
   "author": "Champaign County Regional Planning Commission",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "plottable": "^3.8.0",
+    "plottable": "3.8.1",
     "uswds": "^1.4.4"
   },
   "devDependencies": {

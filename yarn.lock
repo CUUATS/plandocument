@@ -3989,9 +3989,9 @@ pkg-dir@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-plottable@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/plottable/-/plottable-3.8.0.tgz#0fae40346bca50cde160017858d433f1c74ef0c7"
+plottable@3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/plottable/-/plottable-3.8.1.tgz#70617e1ca4a8377a7b93626dce43793c97030994"
   dependencies:
     "@types/d3" "^4.5.0"
     "@types/is-plain-object" "^0.0.2"
