@@ -119,10 +119,18 @@ The `bar-chart` shortcode accepts the following additional parameters:
 
 * `stacked`: stacked bars: `true` or `false` (default)
 
+```
+{{<bar-chart url="data.csv" title="Price Comparison">}}
+```
+
 #### Line Chart
 The `line-chart` shortcode accepts the following additional parameters:
 
 * `line-width`: line width in pixels (default: `2`)
+
+```
+{{<line-chart url="data.csv" title="Price Change, 2015-2017" line-width="3">}}
+```
 
 #### Pie Chart
 The `pie-chart` shortcode accepts the following additional parameters:
@@ -130,6 +138,10 @@ The `pie-chart` shortcode accepts the following additional parameters:
 * `labels`: show sector value labels: `false` or `true` (default)
 * `inner-radius`: hole radius in pixels (default: `0`)
 * `outer-radius`: pie radius in pixels (default: automatic)
+
+```
+{{<pie-chart url="data.csv" title="Energy Use" labels="false">}}
+```
 
 ### Image
 The `image` shortcode adds a content image with additional details such as
