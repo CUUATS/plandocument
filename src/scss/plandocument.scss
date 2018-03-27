@@ -1,6 +1,17 @@
 @import 'variables.scss';
 @import 'node_modules/uswds/src/stylesheets/uswds.scss';
 
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 .plandoc-footer-logo img {
   height: 120px;
 }
@@ -67,6 +78,16 @@ figure.plandoc-image {
   margin-top: -1.25em;
   p {
     margin: 0 0 0.25em;
+  }
+}
+
+.plandoc-chart.plottable {
+  max-height: 100vh;
+  .label text {
+    font-family: $font-serif;
+  }
+  .axis text {
+    font-family: $font-sans;
   }
 }
 
