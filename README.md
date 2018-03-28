@@ -101,6 +101,17 @@ accept the following parameters:
 * `legend-alignment`: `left`, `center`, or `right` (default)
 * `legend-row-width`: number of items in each legend row (default: `1`)
 
+Charts with X and Y axes, such as `bar-chart` and `line-chart`, accept the
+following additional parameters:
+
+* `grid-lines`: show grid lines: `true` or `false` (default)
+* `xangle`: angle of x-axis value labels: `-90`, `90`, or `0` (default)
+* `xlabel`: axis label for the x-axis
+* `xtype`: x-axis type: `category`, `numeric`, `time`, or `auto` (default)
+* `yangle`: angle of y-axis value labels: `-90`, `90`, or `0` (default)
+* `ylabel`: axis label for the y-axis
+* `ytype`: y-axis type: `category`, `numeric`, or `auto` (default)
+
 In addition, all chart shortcodes accept the `rows`, `columns`, and `switch`
 parameters from the `table` shortcode. These parameters can be used to limit
 the chart to a subset of the data.
