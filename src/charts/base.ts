@@ -11,6 +11,7 @@ export interface BaseChartOptions {
   legendAlignment?: Alignment;
   legendRowWidth?: number;
   numberRegex?: RegExp;
+  numberSeparator?: string;
   redrawRate?: number;
   title?: string;
 }
@@ -44,7 +45,8 @@ export class BaseChart {
       legend: true,
       legendAlignment: 'right',
       legendRowWidth: 1,
-      numberRegex: /^[\s$]*([\d.]+)[\s%]*$/,
+      numberRegex: /^[\s$]*([\d.,]+)[\s%]*$/,
+      numberSeparator: ',',
       redrawRate: 15,
       title: null
     };
@@ -95,7 +97,8 @@ export class BaseChart {
       if (typeof value === 'number') return value;
       let matches = value.toString().match(this.options.numberRegex);
       return (matches && matches.length > 1) ?
-        parseFloat(matches[1]) : undefined;
+        parseFloat(matches[1].replace(this.options.numberSeparator, '')) :
+        undefined;
     }
 
     if (scale instanceof Plottable.Scales.Time) {
