@@ -2,6 +2,12 @@
 # yarn lockfile v1
 
 
+"@ccrpc/charts@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@ccrpc/charts/-/charts-0.0.1.tgz#7df4f6df408dc1fe515c961c7da2dbdde9c76794"
+  dependencies:
+    plottable "^3.8.3"
+
 "@types/d3-array@*":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@types/d3-array/-/d3-array-1.2.1.tgz#e489605208d46a1c9d980d2e5772fa9c75d9ec65"
@@ -143,7 +149,7 @@
     "@types/d3-interpolate" "*"
     "@types/d3-selection" "*"
 
-"@types/d3@^4.5.0":
+"@types/d3@^4.13.0", "@types/d3@^4.5.0":
   version "4.13.0"
   resolved "https://registry.yarnpkg.com/@types/d3/-/d3-4.13.0.tgz#aae092b368266409cfbf19c611203145ec0d5f65"
   dependencies:
@@ -185,6 +191,10 @@
 "@types/is-plain-object@^0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@types/is-plain-object/-/is-plain-object-0.0.2.tgz#25bca7b656ba23fb03799a060dba201a7952103d"
+
+"@types/lodash@^4.14.109":
+  version "4.14.116"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.116.tgz#5ccf215653e3e8c786a58390751033a9adca0eb9"
 
 "@types/node@^8.0.14":
   version "8.5.5"
@@ -1893,7 +1903,7 @@ d3-zoom@1.7.1:
     d3-selection "1"
     d3-transition "1"
 
-d3@^4.5.0:
+d3@^4.13.0, d3@^4.5.0:
   version "4.13.0"
   resolved "https://registry.yarnpkg.com/d3/-/d3-4.13.0.tgz#ab236ff8cf0cfc27a81e69bf2fb7518bc9b4f33d"
   dependencies:
@@ -3326,6 +3336,10 @@ lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.4, lodash@~4.17.4:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
+lodash@^4.17.10:
+  version "4.17.11"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
+
 longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
@@ -3999,6 +4013,21 @@ plottable@3.8.1:
     d3-ease "^1.0.0"
     d3-shape "^1.0.0"
     is-plain-object "^2.0.4"
+    tslib "~1.8.0"
+    typesettable "4.1.0"
+
+plottable@^3.8.3:
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/plottable/-/plottable-3.8.3.tgz#3e21a04baa1ca4f64d4cc6b34c92dc449d57229b"
+  dependencies:
+    "@types/d3" "^4.13.0"
+    "@types/is-plain-object" "^0.0.2"
+    "@types/lodash" "^4.14.109"
+    d3 "^4.13.0"
+    d3-ease "^1.0.0"
+    d3-shape "^1.0.0"
+    is-plain-object "^2.0.4"
+    lodash "^4.17.10"
     tslib "~1.8.0"
     typesettable "4.1.0"
 
