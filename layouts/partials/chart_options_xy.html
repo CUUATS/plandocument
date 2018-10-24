@@ -1,8 +1,0 @@
-{{ partial "chart_options_base.html" . -}}
-{{- with (.Get "grid-lines") -}}{{- $.Scratch.SetInMap "chartopts" "gridLines" (eq . "true") -}}{{- end -}}
-{{- with (.Get "xangle") -}}{{- $.Scratch.SetInMap "chartopts" "xAngle" (int .) -}}{{- end -}}
-{{- with (.Get "xlabel") -}}{{- $.Scratch.SetInMap "chartopts" "xLabel" . -}}{{- end -}}
-{{- with (.Get "xtype") -}}{{- $.Scratch.SetInMap "chartopts" "xType" . -}}{{- end -}}
-{{- with (.Get "yangle") -}}{{- $.Scratch.SetInMap "chartopts" "yAngle" (int .) -}}{{- end -}}
-{{- with (.Get "ylabel") -}}{{- $.Scratch.SetInMap "chartopts" "yLabel" . -}}{{- end -}}
-{{- with (.Get "ytype") -}}{{- $.Scratch.SetInMap "chartopts" "yType" . -}}{{- end -}}

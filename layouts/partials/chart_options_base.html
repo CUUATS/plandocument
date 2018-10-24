@@ -1,4 +1,0 @@
-{{- with (.Get "legend") -}}{{- $.Scratch.SetInMap "chartopts" "legend" . -}}{{- end -}}
-{{- with (.Get "legend-alignment") -}}{{- $.Scratch.SetInMap "chartopts" "legendAlignment" . -}}{{- end -}}
-{{- with (.Get "legend-row-width") -}}{{- $.Scratch.SetInMap "chartopts" "legendRowWidth" (int .) -}}{{- end -}}
-{{- with (.Get "title") -}}{{- $.Scratch.SetInMap "chartopts" "title" . -}}{{- end -}}

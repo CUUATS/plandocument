@@ -1,4 +1,0 @@
-{{ partial "chart_options_xy.html" . -}}
-{{- with (.Get "stacked") -}}{{- $.Scratch.SetInMap "chartopts" "stacked" (eq . "true") -}}{{- end -}}
-{{- $.Scratch.Set "chartclass" "BarChart" -}}
-{{ partial "chart_element.html" . -}}

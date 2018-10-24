@@ -91,68 +91,9 @@ It accepts the following parameters:
 ```
 
 ### Charts
-Chart shortcodes create a chart using components from the
-[Plottable](http://plottablejs.org/) JavaScript library. All chart shortcodes
-accept the following parameters:
-
-* `url`: path to a CSV file containing the chart data
-* `title`: chart title
-* `legend`: `false` or `true` (default)
-* `legend-alignment`: `left`, `center`, or `right` (default)
-* `legend-row-width`: number of items in each legend row (default: `1`)
-
-Charts with X and Y axes, such as `bar-chart` and `line-chart`, accept the
-following additional parameters:
-
-* `grid-lines`: show grid lines: `true` or `false` (default)
-* `xangle`: angle of x-axis value labels: `-90`, `90`, or `0` (default)
-* `xlabel`: axis label for the x-axis
-* `xtype`: x-axis type: `category`, `numeric`, `time`, or `auto` (default)
-* `yangle`: angle of y-axis value labels: `-90`, `90`, or `0` (default)
-* `ylabel`: axis label for the y-axis
-* `ytype`: y-axis type: `category`, `numeric`, or `auto` (default)
-
-In addition, all chart shortcodes accept the `rows`, `columns`, and `switch`
-parameters from the `table` shortcode. These parameters can be used to limit
-the chart to a subset of the data.
-
-Chart data should be structured with the x-axis values (if applicable) in the
-first column, and the y-axis values in subsequent columns. For example:
-
-| Date       | Best    | Good    |
-|------------|--------:|--------:|
-| 03/05/2015 |   $2.99 |   $2.54 |
-| 04/12/2016 |   $3.49 |   $3.22 |
-| 06/06/2017 |   $4.25 |   $3.54 |
-
-#### Bar Chart
-The `bar-chart` shortcode accepts the following additional parameters:
-
-* `stacked`: stacked bars: `true` or `false` (default)
-
-```
-{{<bar-chart url="data.csv" title="Price Comparison">}}
-```
-
-#### Line Chart
-The `line-chart` shortcode accepts the following additional parameters:
-
-* `line-width`: line width in pixels (default: `2`)
-
-```
-{{<line-chart url="data.csv" title="Price Change, 2015-2017" line-width="3">}}
-```
-
-#### Pie Chart
-The `pie-chart` shortcode accepts the following additional parameters:
-
-* `labels`: show sector value labels: `false` or `true` (default)
-* `inner-radius`: hole radius in pixels (default: `0`)
-* `outer-radius`: pie radius in pixels (default: automatic)
-
-```
-{{<pie-chart url="data.csv" title="Energy Use" labels="false">}}
-```
+Chart shortcodes have been removed from the Plan Document theme. Use the
+`rpc-chart` element from
+[CCRPC Charts](https://github.com/champaigncountyrpc/ccrpc-charts) instead.
 
 ### Image
 The `image` shortcode adds a content image with additional details such as
