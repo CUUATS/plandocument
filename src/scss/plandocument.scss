@@ -45,42 +45,6 @@ figure.plandoc-image {
   }
 }
 
-.plandoc-table-scroll {
-  overflow-x: auto;
-  width: 100%;
-}
-
-.plandoc-table {
-  font-size: 0.9em;
-  width: 100%;
-  caption {
-    font-weight: normal;
-    .plandoc-table-title {
-      font-weight: bold;
-      font-size: 1.3em;
-      display: block;
-      text-align: center;
-    }
-    .plandoc-table-description {
-      display: block;
-      font-family: $font-sans;
-      text-align: center;
-    }
-  }
-  tfoot td {
-    font-weight: bold;
-  }
-}
-
-.plandoc-table-extra {
-  font-size: 0.8em;
-  font-variant: italic;
-  margin-top: -1.25em;
-  p {
-    margin: 0 0 0.25em;
-  }
-}
-
 .usa-header {
   position: -webkit-sticky;
   position: sticky;
