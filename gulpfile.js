@@ -40,6 +40,8 @@ PATHS
 // Project Sass source directory
 const PROJECT_SASS_SRC = './src/scss';
 
+const PROJECT_JS_SRC = './src/js';
+
 // Images destination
 const IMG_DEST = './static/img';
 
@@ -67,6 +69,11 @@ gulp.task('copy-uswds-images', () => {
 
 gulp.task('copy-uswds-js', () => {
   return gulp.src(`${uswds}/js/**/**`)
+  .pipe(gulp.dest(`${JS_DEST}`));
+});
+
+gulp.task('copy-plandoc-js', () => {
+  return gulp.src(`${PROJECT_JS_SRC}/*.js`)
   .pipe(gulp.dest(`${JS_DEST}`));
 });
 
@@ -106,19 +113,22 @@ gulp.task('init', gulp.series(
   'copy-uswds-setup',
   'copy-uswds-images',
   'copy-uswds-js',
+  'copy-plandoc-js',
   'build-sass',
 ));
 
 gulp.task('build', gulp.series(
   'copy-uswds-images',
   'copy-uswds-js',
+  'copy-plandoc-js',
   'build-sass',
 ));
 
-gulp.task('watch-sass', function () {
+gulp.task('do-watch', function () {
   gulp.watch(`${PROJECT_SASS_SRC}/**/*.scss`, gulp.series('build-sass'));
+  gulp.watch(`${PROJECT_JS_SRC}/*.js`, gulp.series('copy-plandoc-js'));
 });
 
-gulp.task('watch', gulp.series('build-sass', 'watch-sass'));
+gulp.task('watch', gulp.series('build-sass', 'copy-plandoc-js', 'do-watch'));
 
 gulp.task('default', gulp.series('watch'));

@@ -118,3 +118,60 @@ p,
     }
   }
 }
+
+.plandoc-image-expander,
+.plandoc-overlay {
+  display: none;
+}
+
+@include at-media('tablet') {
+  .plandoc-overlay {
+    align-items: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.85);
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    figure.plandoc-image {
+      display: inline-block;
+      float: none;
+      margin: 0 auto;
+      max-width: 80%;
+      width: auto;
+    }
+    figcaption {
+      margin-top: 0.25em;
+    }
+    a {
+      color: color($theme-color-accent-cool-light);
+    }
+  }
+  .plandoc-image-wrapper {
+    text-align: right;
+    position: relative;
+    img {
+      display: block;
+      max-height: 80vh;
+    }
+  }
+  .plandoc-image-expander {
+    background-color: color($theme-color-primary);
+    border: 0 none transparent;
+    bottom: 0;
+    color: white;
+    display: inline-block;
+    line-height: 1;
+    padding: 5px 10px;
+    position: absolute;
+    right: 0;
+    ion-icon {
+      font-size: 24px;
+    }
+  }
+}
