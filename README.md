@@ -63,19 +63,25 @@ The Plan Document theme also provides several custom shortcodes.
 The `accordion` and `accordion-content` shortcodes create expandable sections
 using the [USWDS accordion
 component](https://components.standards.usa.gov/components/detail/accordion--default.html).
-The `accordion` shortcode accepts the optional parameters `border` and
-`multiselect`, both of which are `false` by default:
+The `accordion` shortcode accepts the parameter `level` (`2` by default) to
+indicate the heading level of the accordion headings in the page outline. It
+also accepts the optional parameters `border` and `multiselect`, both of which
+are `false` by default:
 
 ```
-{{<accordion border="true" multiselect="true">}}
-  {{<accordion-content title="Section One">}}
+{{<accordion border="true" multiselect="true" level="3">}}
+  {{%accordion-content title="Section One"%}}
     Section one text.
-  {{</accordion-content>}}
-  {{<accordion-content title="Section Two">}}
+  {{%/accordion-content%}}
+  {{%accordion-content title="Section Two"%}}
     Section two text.
-  {{</accordion-content>}}
+  {{%/accordion-content%}}
 {{</accordion>}}
 ```
+
+Note that in order for the contents of the `accordion-content` shortcode
+to be processed as Markdown, that shortcode must use `{{% %}}` instead of
+`{{< >}}`.
 
 ### Button
 The `button` shortcode creates a button using the [USWDS button
