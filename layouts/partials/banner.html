@@ -1,10 +1,10 @@
 {{ $image := .Resources.GetMatch "banner.*" }}
 {{ if $image }}
 <section class="usa-hero" style="background-image: url('{{ $image.RelPermalink }}');">
-  <div class="usa-grid">
+  <div class="grid-container">
     {{ if or .Params.bannerHeading .Params.bannerText }}
-    <div class="usa-hero-callout usa-section-dark">
-      <h2>{{ .Params.bannerHeading }}</h2>
+    <div class="usa-hero-callout">
+      <h2 class="usa-hero-heading">{{ .Params.bannerHeading }}</h2>
       {{ if .Params.bannerText }}<p>{{ .Params.bannerText }}</p>{{ end }}
       {{ if and .Params.bannerAction .Params.bannerUrl }}
       <a class="usa-button" href="{{ .Params.bannerUrl | relURL }}">{{ .Params.bannerAction }}</a>

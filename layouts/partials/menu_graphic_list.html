@@ -1,16 +1,18 @@
 {{ if .Site.Menus.main }}
 <section class="usa-section usa-section-dark usa-graphic_list">
-  {{ range $index, $element := .Site.Menus.main }}
-  {{ if eq (mod $index 2) 0 }}
-  {{ if gt $index 0 }}
-  </div>
-  {{ end }}
-  <div class="usa-grid usa-graphic_list-row">
-  {{ end }}
-    {{ with .Page }}
-    {{ partial "graphic_list_item.html" . }}
+  <div class="grid-container">
+    {{ range $index, $element := .Site.Menus.main }}
+    {{ if eq (mod $index 2) 0 }}
+    {{ if gt $index 0 }}
+    </div>
     {{ end }}
-  {{ end }}
+    <div class="usa-graphic_list-row grid-row grid-gap">
+    {{ end }}
+      {{ with .Page }}
+      {{ partial "graphic_list_item.html" . }}
+      {{ end }}
+    {{ end }}
+    </div>
   </div>
 </section>
 {{ end }}

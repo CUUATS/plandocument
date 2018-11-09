@@ -1,72 +1,85 @@
   <footer class="usa-footer usa-footer-medium" role="contentinfo">
-    <div class="usa-grid usa-footer-return-to-top">
+    <div class="grid-container usa-footer-return-to-top">
       <a href="#">Return to top</a>
     </div>
     {{ partial "footer_custom.html" . }}
     <div class="usa-footer-primary-section">
-      <div class="usa-grid">
-        <nav class="usa-footer-nav">
-          <ul class="usa-unstyled-list">
-            {{ range .Site.Menus.main }}
-            <li class="usa-width-one-sixth usa-footer-primary-content">
-              <a class="usa-footer-primary-link" href="{{ .URL }}">{{ .Name }}</a>
-            </li>
-            {{ end }}
-          </ul>
-        </nav>
-      </div>
+      <nav class="usa-footer-nav">
+        <ul class="add-list-reset grid-row grid-gap">
+          {{ range .Site.Menus.main }}
+          <li class="mobile-lg:grid-col-4 desktop:grid-col-2 usa-footer-primary-content">
+            <a class="usa-footer-primary-link" href="{{ .URL }}">{{ .Name }}</a>
+          </li>
+          {{ end }}
+        </ul>
+      </nav>
     </div>
 
-    <div class="usa-footer-secondary_section">
-      <div class="usa-grid">
-        <div class="plandoc-footer-logo usa-width-one-half">
-          <a href="{{ if .Site.Params.agency.url }}{{ .Site.Params.agency.url }}{{ else }}{{ .Site.BaseURL }}{{ end }}">
-            {{ if .Site.Params.agency.logo }}
-              <img class="usa-footer-logo" src="{{ .Site.Params.agency.logo | relURL }}" alt="{{ .Site.Params.agency.name }}">
-            {{ else }}
-              <h3 class="usa-footer-logo-heading">{{ if .Site.Params.agency.name }}{{ .Site.Params.agency.name }}{{ else }}{{ .Site.Title }}{{ end }}</h3>
-            {{ end }}
-          </a>
-        </div>
-        <div class="usa-footer-contact-links usa-width-one-half">
-          {{ if .Site.Params.agency.facebook }}
-          <a class="usa-link-facebook" href="{{ .Site.Params.agency.facebook }}">
-            <span>Facebook</span>
-          </a>
-          {{ end }}
-          {{ if .Site.Params.agency.twitter }}
-          <a class="usa-link-twitter" href="{{ .Site.Params.agency.twitter }}">
-            <span>Twitter</span>
-          </a>
-          {{ end }}
-          {{ if .Site.Params.agency.youtube }}
-          <a class="usa-link-youtube" href="{{ .Site.Params.agency.youtube }}">
-            <span>YouTube</span>
-          </a>
-          {{ end }}
-          <a class="usa-link-rss" href="{{ "/index.xml" | relURL }}">
-            <span>RSS</span>
-          </a>
-          <h3 class="usa-footer-contact-heading">{{ if .Site.Params.agency.name }}{{ .Site.Params.agency.name }}{{ else }}{{ .Site.Title }}{{ end }}</h3>
-          <address>
-            {{ if .Site.Params.agency.phone }}
-            <div class="usa-footer-primary-content usa-footer-contact_info">
-              <p>
-                <a href="tel:+1{{ replaceRE "[^0-9]" "" .Site.Params.agency.phone }}">{{ .Site.Params.agency.phone }}</a>
-              </p>
+    <div class="usa-footer-secondary-section">
+      <div class="grid-container">
+        <div class="grid-row grid-gap">
+          <div class="plandoc-footer-logo usa-footer-logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
+            <div class="mobile-lg:grid-col-auto">
+              <a href="{{ if .Site.Params.agency.url }}{{ .Site.Params.agency.url }}{{ else }}{{ .Site.BaseURL }}{{ end }}">
+                {{ if .Site.Params.agency.logo }}
+                  <img class="usa-footer-logo" src="{{ .Site.Params.agency.logo | relURL }}" alt="{{ .Site.Params.agency.name }}">
+                {{ else }}
+                  <h3 class="usa-footer-logo-heading">{{ if .Site.Params.agency.name }}{{ .Site.Params.agency.name }}{{ else }}{{ .Site.Title }}{{ end }}</h3>
+                {{ end }}
+              </a>
             </div>
-            {{ end }}
-            {{ if .Site.Params.agency.email }}
-            <div class="usa-footer-primary-content usa-footer-contact_info">
-              <p><a href="mailto:{{ .Site.Params.agency.email }}">{{ .Site.Params.agency.email }}</a></p>
+          </div>
+          <div class="usa-footer-contact-links mobile-lg:grid-col-6">
+            <div class="usa-footer-social-links grid-row grid-gap-1">
+              {{ if .Site.Params.agency.facebook }}
+              <div class="grid-col-auto">
+                <a class="usa-link-facebook" href="{{ .Site.Params.agency.facebook }}">
+                  <span>Facebook</span>
+                </a>
+              </div>
+              {{ end }}
+              {{ if .Site.Params.agency.twitter }}
+              <div class="grid-col-auto">
+                <a class="usa-link-twitter" href="{{ .Site.Params.agency.twitter }}">
+                  <span>Twitter</span>
+                </a>
+              </div>
+              {{ end }}
+              {{ if .Site.Params.agency.youtube }}
+              <div class="grid-col-auto">
+                <a class="usa-link-youtube" href="{{ .Site.Params.agency.youtube }}">
+                  <span>YouTube</span>
+                </a>
+              </div>
+              {{ end }}
+              <div class="grid-col-auto">
+                <a class="usa-link-rss" href="{{ "/index.xml" | relURL }}">
+                  <span>RSS</span>
+                </a>
+              </div>
             </div>
-            {{ end }}
-          </address>
+            <h3 class="usa-footer-contact-heading">{{ if .Site.Params.agency.name }}{{ .Site.Params.agency.name }}{{ else }}{{ .Site.Title }}{{ end }}</h3>
+            <address ckass="usa-footer-address">
+
+              <div class="usa-footer-contact_info grid-row grid-gap">
+                {{ if .Site.Params.agency.phone }}
+                <div class="grid-col-auto">
+                  <a href="tel:+1{{ replaceRE "[^0-9]" "" .Site.Params.agency.phone }}">{{ .Site.Params.agency.phone }}</a>
+                </div>
+                {{ end }}
+                {{ if .Site.Params.agency.email }}
+                <div class="grid-col-auto">
+                  <a href="mailto:{{ .Site.Params.agency.email }}">{{ .Site.Params.agency.email }}</a>
+                </div>
+                {{ end }}
+              </div>
+            </address>
+          </div>
         </div>
       </div>
     </div>
   </footer>
-  <script src="{{ "/js/bundle.js?cachekey=20180328" | relURL }}"></script>
+  <script src="{{ "/js/uswds.min.js?cachekey=20180328" | relURL }}"></script>
   <script src="https://unpkg.com/@ccrpc/charts@0.2.1/dist/ccrpc-charts.js"></script>
 </body>
 </html>

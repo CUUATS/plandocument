@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex">
   <title>{{ .Title }} | {{ .Site.Title }}</title>
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,400i,700' />
-  <link rel="stylesheet" href="{{ "/css/bundle.css?cachekey=20180328" | relURL }}" />
+  <link rel="stylesheet" href="{{ "/css/styles.css?cachekey=20180328" | relURL }}" />
   {{ partial "header_custom.html" . }}
 </head>
 
@@ -32,14 +32,14 @@
     		</button>
     		<ul class="usa-nav-primary usa-accordion">
           {{ range $index, $element := .Site.Menus.main }}
-          <li>
+          <li class="usa-nav-primary-item">
             {{ if $element.Page.Pages }}
             <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="extended-nav-section-{{ $index }}">
               <span>{{ .Name }}</span>
             </button>
             <ul id="extended-nav-section-{{ $index }}" class="usa-nav-submenu">
               {{ range .Page.Pages }}
-              <li>
+              <li class="usa-nav-submenu-item">
                 <a href="{{ .URL }}">{{ .Title }}</a>
               </li>
               {{ end }}
@@ -53,27 +53,22 @@
           {{ end }}
     		</ul>
     		<div class="usa-nav-secondary">
-    			<form class="usa-search usa-search-small js-search-form">
-    				<div role="search">
-    					<label class="usa-sr-only" for="extended-search-field-small">Search small</label>
-    					<input id="extended-search-field-small" type="search" name="search">
-    					<button type="submit">
-                <span class="usa-sr-only">Search</span>
-    					</button>
-    				</div>
-    			</form>
-    			<ul class="usa-unstyled-list usa-nav-secondary-links">
-    				<li class="js-search-button-container">
-    					<button class="usa-header-search-button js-search-button">Search</button>
-    				</li>
+          <ul class="usa-nav-secondary-links">
             {{ range .Site.Menus.eyebrow }}
-    				<li>
+            <li ckass="usa-nav-secondary-item">
               <a href="{{ .URL }}">
                 <span>{{ .Name }}</span>
               </a>
-    				</li>
+            </li>
             {{ end }}
-    			</ul>
+          </ul>
+          <form class="usa-search usa-search-small ">
+            <div role="search">
+              <label class="usa-sr-only" for="extended-search-field-small">Search small</label>
+              <input class="usa-input" id="extended-search-field-small" type="search" name="search">
+              <button class="usa-button" type="submit"><span class="usa-sr-only">Search</span></button>
+            </div>
+          </form>
     		</div>
     	</div>
     </nav>

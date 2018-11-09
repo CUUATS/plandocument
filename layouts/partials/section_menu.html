@@ -1,28 +1,30 @@
-<aside class="usa-width-one-fourth usa-layout-docs-sidenav">
+<aside class="usa-layout-docs-sidenav desktop:grid-col-3">
   {{ if .Page.CurrentSection }}
   {{ if .Page.CurrentSection.Pages }}
   {{ $pageUID := .Page.UniqueID }}
-  <ul class="usa-sidenav-list">
-    {{ range .Page.CurrentSection.Pages }}
-    <li>
-      {{ if eq $pageUID .UniqueID }}
-      <a class="usa-current" href="{{ .URL }}">{{ .Title }}</a>
-      {{ $headers := findRE "<h2.*?>(.|\n])+?</h2>" .Content }}
-      {{ if $headers }}
-      <ul class="usa-sidenav-sub_list">
-        {{ range $headers }}
-          <li>
-            <a href="#{{ . | plainify | htmlEscape | urlize }}">{{ . | plainify | htmlEscape }}</a>
-          </li>
+  <nav>
+    <ul class="usa-sidenav">
+      {{ range .Page.CurrentSection.Pages }}
+      <li class="usa-sidenav-item">
+        {{ if eq $pageUID .UniqueID }}
+        <a class="usa-current" href="{{ .URL }}">{{ .Title }}</a>
+        {{ $headers := findRE "<h2.*?>(.|\n])+?</h2>" .Content }}
+        {{ if $headers }}
+        <ul class="usa-sidenav-sublist">
+          {{ range $headers }}
+            <li class="usa-sidenav-item">
+              <a href="#{{ . | plainify | htmlEscape | urlize }}">{{ . | plainify | htmlEscape }}</a>
+            </li>
+          {{ end }}
+        </ul>
         {{ end }}
-      </ul>
+        {{ else }}
+        <a href="{{ .URL }}">{{ .Title }}</a>
+        {{ end }}
+      </li>
       {{ end }}
-      {{ else }}
-      <a href="{{ .URL }}">{{ .Title }}</a>
-      {{ end }}
-    </li>
-    {{ end }}
-  </ul>
+    </ul>
+  </nav>
   {{ end }}
   {{ end }}
 </aside>

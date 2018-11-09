@@ -1,4 +1,4 @@
-<div class="usa-width-one-half usa-media_block">
+<div class="usa-media_block tablet:grid-col">
   <a href="{{ .URL }}">
     {{ $image := .Resources.GetMatch "banner.*" }}
     {{ if $image }}
@@ -9,7 +9,7 @@
     {{ end }}
   </a>
   <div class="usa-media_block-body">
-      <h3>{{ .Title }}</h3>
+      <h3 class="usa-graphic_list-heading">{{ .Title }}</h3>
       {{ if or .Params.abstract .Summary }}
       <p>{{ (default .Params.abstract .Summary) | htmlEscape }}</p>
       {{ end }}

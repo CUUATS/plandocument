@@ -2,11 +2,13 @@
 
 <main id="main-content">
   {{ partial "banner.html" . }}
-  <section class="usa-grid usa-section usa-content usa-layout-docs">
-    {{ partial "section_menu.html" . }}
-    <div class="usa-width-three-fourths usa-layout-docs-main_content">
-      <h1><span class="title">{{ .Title }}</span></h1>
-      {{ .Content }}
+  <section class="grid-container usa-section">
+    <div class="grid-row grid-gap">
+      {{ partial "section_menu.html" . }}
+      <div class="usa-layout-docs-main_content desktop:grid-col-9 usa-prose">
+        <h1><span class="title">{{ .Title }}</span></h1>
+        {{ .Content }}
+      </div>
     </div>
   </section>
 </main>
