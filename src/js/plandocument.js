@@ -44,5 +44,22 @@
     if (overlay) overlay.remove();
   }
 
+  function addHeadingPermalinks() {
+    let content = document.querySelector('.usa-layout-docs-main_content');
+    if (!content) return;
+    let headings = content.querySelectorAll('h2,h3,h4,h5,h6');
+    for (let i=0; i < headings.length; i++) {
+      let heading = headings[i];
+      if (!heading.id) continue;
+      let a = document.createElement('a');
+      a.classList.add('plandoc-heading-permalink');
+      a.href = '#' + heading.id;
+      a.textContent = '\u00B6';
+      a.title = 'Permalink to ' + heading.textContent;
+      heading.appendChild(a);
+    }
+  }
+
   initImageExpand();
+  addHeadingPermalinks();
 })();
