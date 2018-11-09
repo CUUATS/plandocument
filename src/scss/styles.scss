@@ -105,3 +105,16 @@ p,
 .usa-prose p {
   max-width: 100%;
 }
+
+@include at-media('desktop') {
+  aside.usa-layout-docs-sidenav nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 46px;
+    &:before,
+    &:after {
+      content: '';
+      display: table;
+    }
+  }
+}
