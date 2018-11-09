@@ -81,7 +81,6 @@ figure.plandoc-image {
 
 .usa-header {
   background-color: white;
-  border-bottom: 1px solid #dbdee1;
   position: -webkit-sticky;
   position: sticky;
   top: -95px;
@@ -92,7 +91,10 @@ figure.plandoc-image {
   }
 }
 
-@media only screen and (min-width: 64em) {
+@include at-media('desktop') {
+  .usa-header {
+    border-bottom: 1px solid #dbdee1;
+  }
   .usa-header + .usa-section,
   .usa-header + main {
     border-top: 0 none transparent;
