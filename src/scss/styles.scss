@@ -56,20 +56,20 @@
 
 figure.plandoc-image {
   margin: 1em 0;
-  // @include media($medium-screen) {
-  //   &.plandoc-image-left {
-  //     clear: both;
-  //     float: left;
-  //     margin-right: 1em;
-  //     width: 50%;
-  //   }
-  //   &.plandoc-image-right {
-  //     clear: both;
-  //     float: right;
-  //     margin-left: 1em;
-  //     width: 50%;
-  //   }
-  // }
+  @include at-media('tablet') {
+    &.plandoc-image-left {
+      clear: both;
+      float: left;
+      margin-right: 1em;
+      width: 50%;
+    }
+    &.plandoc-image-right {
+      clear: both;
+      float: right;
+      margin-left: 1em;
+      width: 50%;
+    }
+  }
   .plandoc-image-caption {
     font-size: 80%;
   }
