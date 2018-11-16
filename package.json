@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "A web-based planning document theme for Hugo",
   "scripts": {
-    "build": "BUILD_PRODUCTION=true npx webpack",
-    "watch": "npx webpack"
+    "build": "gulp build",
+    "watch": "gulp watch"
   },
   "keywords": [
     "plan",
